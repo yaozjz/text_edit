@@ -1,0 +1,16 @@
+D:\project\programe\Csharp\text_edit\bin\Debug\text_edit.exe.config
+D:\project\programe\Csharp\text_edit\bin\Debug\text_edit.exe.manifest
+D:\project\programe\Csharp\text_edit\bin\Debug\text_edit.application
+D:\project\programe\Csharp\text_edit\bin\Debug\text_edit.exe
+D:\project\programe\Csharp\text_edit\bin\Debug\text_edit.pdb
+D:\project\programe\Csharp\text_edit\obj\Debug\text_edit.about.resources
+D:\project\programe\Csharp\text_edit\obj\Debug\text_edit.mainFrom.resources
+D:\project\programe\Csharp\text_edit\obj\Debug\text_edit.Properties.Resources.resources
+D:\project\programe\Csharp\text_edit\obj\Debug\text_edit.searchAndChange.resources
+D:\project\programe\Csharp\text_edit\obj\Debug\text_edit.csproj.GenerateResource.cache
+D:\project\programe\Csharp\text_edit\obj\Debug\text_edit.csproj.CoreCompileInputs.cache
+D:\project\programe\Csharp\text_edit\obj\Debug\text_edit.exe.manifest
+D:\project\programe\Csharp\text_edit\obj\Debug\text_edit.application
+D:\project\programe\Csharp\text_edit\obj\Debug\text_edit.exe
+D:\project\programe\Csharp\text_edit\obj\Debug\text_edit.pdb
+D:\project\programe\Csharp\text_edit\obj\Debug\text_edit.csproj.AssemblyReference.cache
