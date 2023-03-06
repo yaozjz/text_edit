@@ -113,7 +113,7 @@ namespace text_edit
             //单次替换
             mainFrom f1 = (mainFrom)this.Owner;
             RichTextBox rtb = f1.RBT;
-            string keyWord = "";
+            string keyWord;
             if (searchTxt.Enabled)
             {
                 if (rtb.SelectedText.Length > 0)
@@ -131,8 +131,12 @@ namespace text_edit
                 else
                     searchTxt_Click(sender, e);
                 //替换
-                if (rtb.SelectedText.Length > 0)
-                    rtb.SelectedText = changeTxt.Text;
+                if (rtb.SelectedText.Length > 0) {
+                    if (zeZeOn.Checked)
+                        rtb.SelectedText = Regex.Replace(rtb.SelectedText, searchRulu.Text, changeTxt.Text);
+                    else
+                        rtb.SelectedText = changeTxt.Text;
+                }
             }
             else
                 MessageBox.Show("请填写要替换的内容!", "警告", MessageBoxButtons.OK);
@@ -143,14 +147,11 @@ namespace text_edit
             //全部替换
             mainFrom f1 = (mainFrom)this.Owner;
             RichTextBox rtb = f1.RBT;
-            //如果使用了正则表达式，应该找出全部的匹配项
             if (zeZeOn.Checked)
             {
-                foreach (Match ma in Regex.Matches(rtb.Text, searchRulu.Text))
-                {
-                    string keyWord = ma.Value;
-                    rtb.Text = rtb.Text.Replace(keyWord, changeTxt.Text);
-                }
+                StringBuilder sb = new StringBuilder(Regex.Replace(rtb.Text, searchRulu.Text, changeTxt.Text));
+                rtb.Text = sb.ToString();
+                sb.Clear();
             }
             else
             {

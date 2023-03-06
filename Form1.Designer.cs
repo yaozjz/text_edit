@@ -54,13 +54,14 @@ namespace text_edit
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.exitBt = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.textFilePath = new System.Windows.Forms.ToolStripStatusLabel();
             this.filePath = new System.Windows.Forms.ToolStripStatusLabel();
             this.Now_index = new System.Windows.Forms.ToolStripStatusLabel();
             this.coding_fun = new System.Windows.Forms.ToolStripStatusLabel();
             this.txt_font = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.saveJuMo = new System.Windows.Forms.Button();
@@ -75,7 +76,6 @@ namespace text_edit
             this.unitFromat_txt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.clearMessage = new System.Windows.Forms.Button();
-            this.messageBox = new System.Windows.Forms.TextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.clearLineN = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,6 +83,8 @@ namespace text_edit
             this.clearTN = new System.Windows.Forms.ToolStripMenuItem();
             this.去除空行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.自动整理段落ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ttName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -91,6 +93,7 @@ namespace text_edit
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -124,7 +127,7 @@ namespace text_edit
             // 
             this.openText.Name = "openText";
             this.openText.ShortcutKeyDisplayString = "Ctrl+O";
-            this.openText.Size = new System.Drawing.Size(180, 22);
+            this.openText.Size = new System.Drawing.Size(171, 22);
             this.openText.Text = "打开文本";
             this.openText.Click += new System.EventHandler(this.openText_Click);
             // 
@@ -132,7 +135,7 @@ namespace text_edit
             // 
             this.快速保存ToolStripMenuItem.Name = "快速保存ToolStripMenuItem";
             this.快速保存ToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+S";
-            this.快速保存ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.快速保存ToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.快速保存ToolStripMenuItem.Tag = "";
             this.快速保存ToolStripMenuItem.Text = "快速保存";
             this.快速保存ToolStripMenuItem.Click += new System.EventHandler(this.saveBt_Click);
@@ -140,14 +143,14 @@ namespace text_edit
             // saveText
             // 
             this.saveText.Name = "saveText";
-            this.saveText.Size = new System.Drawing.Size(180, 22);
+            this.saveText.Size = new System.Drawing.Size(171, 22);
             this.saveText.Text = "另存文本";
             this.saveText.Click += new System.EventHandler(this.saveText_Click);
             // 
             // exitSystem
             // 
             this.exitSystem.Name = "exitSystem";
-            this.exitSystem.Size = new System.Drawing.Size(180, 22);
+            this.exitSystem.Size = new System.Drawing.Size(171, 22);
             this.exitSystem.Text = "退出";
             this.exitSystem.Click += new System.EventHandler(this.exitSystem_Click);
             // 
@@ -165,23 +168,21 @@ namespace text_edit
             // 
             this.searchText.Name = "searchText";
             this.searchText.ShortcutKeyDisplayString = "Ctrl+F";
-            this.searchText.Size = new System.Drawing.Size(143, 22);
+            this.searchText.Size = new System.Drawing.Size(180, 22);
             this.searchText.Text = "查找";
             this.searchText.Click += new System.EventHandler(this.searchText_Click);
             // 
             // geShiSet
             // 
             this.geShiSet.Name = "geShiSet";
-            this.geShiSet.Size = new System.Drawing.Size(143, 22);
+            this.geShiSet.Size = new System.Drawing.Size(180, 22);
             this.geShiSet.Text = "字体";
             this.geShiSet.Click += new System.EventHandler(this.geShiSet_Click);
             // 
             // autoEnter
             // 
-            this.autoEnter.Checked = true;
-            this.autoEnter.CheckState = System.Windows.Forms.CheckState.Checked;
             this.autoEnter.Name = "autoEnter";
-            this.autoEnter.Size = new System.Drawing.Size(143, 22);
+            this.autoEnter.Size = new System.Drawing.Size(180, 22);
             this.autoEnter.Text = "自动换行";
             this.autoEnter.CheckedChanged += new System.EventHandler(this.autoEnter_CheckedChanged);
             this.autoEnter.Click += new System.EventHandler(this.autoEnter_Click);
@@ -298,7 +299,7 @@ namespace text_edit
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
+            this.textFilePath,
             this.filePath,
             this.Now_index,
             this.coding_fun,
@@ -310,11 +311,11 @@ namespace text_edit
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // textFilePath
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(68, 17);
-            this.toolStripStatusLabel1.Text = "文件路径：";
+            this.textFilePath.Name = "textFilePath";
+            this.textFilePath.Size = new System.Drawing.Size(68, 17);
+            this.textFilePath.Text = "文件路径：";
             // 
             // filePath
             // 
@@ -366,9 +367,9 @@ namespace text_edit
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.clearMessage);
-            this.panel1.Controls.Add(this.messageBox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
@@ -376,10 +377,35 @@ namespace text_edit
             this.panel1.Size = new System.Drawing.Size(204, 548);
             this.panel1.TabIndex = 0;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.hang,
+            this.ttName});
+            this.dataGridView1.Location = new System.Drawing.Point(2, 356);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(203, 189);
+            this.dataGridView1.TabIndex = 12;
+            this.dataGridView1.TabStop = false;
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.Window;
             this.panel2.Controls.Add(this.label4);
@@ -396,14 +422,14 @@ namespace text_edit
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(203, 354);
+            this.panel2.Size = new System.Drawing.Size(203, 321);
             this.panel2.TabIndex = 11;
             // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 255);
+            this.label4.Location = new System.Drawing.Point(5, 222);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 20);
             this.label4.TabIndex = 11;
@@ -413,7 +439,7 @@ namespace text_edit
             // 
             this.saveJuMo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saveJuMo.Font = new System.Drawing.Font("幼圆", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.saveJuMo.Location = new System.Drawing.Point(137, 314);
+            this.saveJuMo.Location = new System.Drawing.Point(137, 281);
             this.saveJuMo.Name = "saveJuMo";
             this.saveJuMo.Size = new System.Drawing.Size(60, 24);
             this.saveJuMo.TabIndex = 10;
@@ -425,7 +451,7 @@ namespace text_edit
             // 
             this.DuanMo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DuanMo.Location = new System.Drawing.Point(3, 282);
+            this.DuanMo.Location = new System.Drawing.Point(3, 249);
             this.DuanMo.Name = "DuanMo";
             this.DuanMo.Size = new System.Drawing.Size(194, 26);
             this.DuanMo.TabIndex = 9;
@@ -527,10 +553,10 @@ namespace text_edit
             // 
             // clearMessage
             // 
-            this.clearMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.clearMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.clearMessage.Font = new System.Drawing.Font("幼圆", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.clearMessage.Location = new System.Drawing.Point(3, 360);
+            this.clearMessage.Location = new System.Drawing.Point(2, 327);
             this.clearMessage.Margin = new System.Windows.Forms.Padding(0);
             this.clearMessage.Name = "clearMessage";
             this.clearMessage.Size = new System.Drawing.Size(203, 26);
@@ -539,21 +565,6 @@ namespace text_edit
             this.clearMessage.Text = "清除记录";
             this.clearMessage.UseVisualStyleBackColor = true;
             this.clearMessage.Click += new System.EventHandler(this.clearMessage_Click);
-            // 
-            // messageBox
-            // 
-            this.messageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.messageBox.BackColor = System.Drawing.SystemColors.Window;
-            this.messageBox.CausesValidation = false;
-            this.messageBox.Location = new System.Drawing.Point(3, 389);
-            this.messageBox.Multiline = true;
-            this.messageBox.Name = "messageBox";
-            this.messageBox.ReadOnly = true;
-            this.messageBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.messageBox.Size = new System.Drawing.Size(200, 155);
-            this.messageBox.TabIndex = 10;
-            this.messageBox.TabStop = false;
             // 
             // richTextBox1
             // 
@@ -565,7 +576,9 @@ namespace text_edit
             this.richTextBox1.Size = new System.Drawing.Size(882, 548);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            this.richTextBox1.WordWrap = false;
             this.richTextBox1.SelectionChanged += new System.EventHandler(this.richTextBox1_SelectionChanged);
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
             // 
             // contextMenuStrip1
@@ -614,6 +627,20 @@ namespace text_edit
             this.自动整理段落ToolStripMenuItem.Text = "自动整理段落";
             this.自动整理段落ToolStripMenuItem.Click += new System.EventHandler(this.autoParagraph_Click);
             // 
+            // hang
+            // 
+            this.hang.FillWeight = 50.76142F;
+            this.hang.HeaderText = "行";
+            this.hang.Name = "hang";
+            this.hang.ReadOnly = true;
+            // 
+            // ttName
+            // 
+            this.ttName.FillWeight = 149.2386F;
+            this.ttName.HeaderText = "章节名称";
+            this.ttName.Name = "ttName";
+            this.ttName.ReadOnly = true;
+            // 
             // mainFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -643,7 +670,7 @@ namespace text_edit
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -671,7 +698,7 @@ namespace text_edit
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button clearMessage;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel textFilePath;
         private System.Windows.Forms.ToolStripStatusLabel filePath;
         private System.Windows.Forms.ToolStripStatusLabel Now_index;
         private System.Windows.Forms.ToolStripMenuItem geShiSet;
@@ -682,7 +709,6 @@ namespace text_edit
         private System.Windows.Forms.ToolStripMenuItem 快速保存ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutBt;
         private System.Windows.Forms.ToolStripMenuItem autoEnter;
-        public System.Windows.Forms.TextBox messageBox;
         private System.Windows.Forms.ToolStripMenuItem 文本ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 去除文本中的空行ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 去除所有空白字符ToolStripMenuItem;
@@ -706,6 +732,9 @@ namespace text_edit
         private System.Windows.Forms.Button saveJuMo;
         private System.Windows.Forms.TextBox DuanMo;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hang;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ttName;
     }
 }
 

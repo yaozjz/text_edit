@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="text_edit.exe" size="289736">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="text_edit.exe" size="291272">
       <assemblyIdentity name="text_edit" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>lBlBdCTex6LXwUU+MQM5A/7+YkdADjk4vSAIfO6GD8g=</dsig:DigestValue>
+        <dsig:DigestValue>oX+6+61c9AdY/LBiln1EAm3lC0bupYvy6nC8g7XFOzs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

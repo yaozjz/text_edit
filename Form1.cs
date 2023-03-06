@@ -43,7 +43,7 @@ namespace text_edit
             }
             catch
             {
-                showMessage("文章规则文件无法索引，请放置rule.txt文件到软件根目录下。");
+                MessageBox.Show("文章规则文件无法索引，请放置rule.txt文件到软件根目录下。", "提示");
             }
             //加载段落格式
             DuanMo.Text = ConfigurationManager.AppSettings["DuanMo"];
@@ -72,17 +72,18 @@ namespace text_edit
             if (formatStr == "txt")
                 OpenEcode(strFileName);
             else
-                showMessage("不支持打开该格式文件");
+                MessageBox.Show("不支持打开该格式");
         }
         //清除日志记录
         private void clearMessage_Click(object sender, EventArgs e)
         {
-            messageBox.Text = "";
+            dataGridView1.Rows.Clear();
         }
-        //添加信息
-        private void showMessage(string msg)
+        //章节显示
+        private void showMessage(int line_index, string ttName)
         {
-            messageBox.AppendText(msg + "\r\n");
+            string[] msg = { line_index.ToString(), ttName };
+            dataGridView1.Rows.Add(msg);
         }
 
         private void OpenEcode(string fileName)
@@ -150,10 +151,7 @@ namespace text_edit
             catch (Exception ex)
             {
                 stopFlag = true;
-                this.Invoke((EventHandler)delegate
-                {
-                    messageBox.AppendText("打开失败，请选择合适的文件。\n错误信息:" + ex.Message + "\r\n");
-                });
+                MessageBox.Show("打开失败，请选择合适的文件。" + ex.Message);
             }
         }
         //============END
@@ -198,12 +196,12 @@ namespace text_edit
                     sw.Write(richTextBox1.Text);
                     sw.Close();
                     fs.Close();
-                    showMessage("已保存到:" + saveFileName);
                     filePath.Text = saveFileName;
+                    textFilePath.Text = "文件路径：";
                 }
                 catch (Exception ex)
                 {
-                    showMessage("Error:" + ex.Message);
+                    MessageBox.Show("Error:" + ex.Message);
                 }
             }
         }
@@ -218,7 +216,7 @@ namespace text_edit
                 sw.Write(richTextBox1.Text);
                 sw.Close();
                 fs.Close();
-                showMessage("快速保存完成。");
+                textFilePath.Text = "文件路径：";
             }
             else
             {
@@ -351,10 +349,9 @@ namespace text_edit
             about ab = new about();
             ab.Show();
         }
-
+        //去除空行
         private void clearNullLine_Click(object sender, EventArgs e)
         {
-            //richTextBox1.Text = Regex.Replace(richTextBox1.Text, @"((?s)\n\s*\n)", "\n");
             StringBuilder sb = new StringBuilder();
             foreach (string line in richTextBox1.Lines)
             {
@@ -363,6 +360,7 @@ namespace text_edit
             }
             richTextBox1.Text = sb.ToString();
             sb.Clear();
+
         }
 
         private void autoEnter_CheckedChanged(object sender, EventArgs e)
@@ -381,8 +379,9 @@ namespace text_edit
         //去除文本中的全部空白
         private void clearNull_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text = richTextBox1.Text.Replace(" ", "");
-            richTextBox1.Focus();
+            StringBuilder sb = new StringBuilder(Regex.Replace(richTextBox1.Text, @"[\t \f]", ""));
+            richTextBox1.Text = sb.ToString();
+            sb.Clear();
         }
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
@@ -403,7 +402,10 @@ namespace text_edit
             StringBuilder sb = new StringBuilder();
             foreach (string i in richTextBox1.Lines)
             {
-                sb.Append(i.Trim() + "\n");
+                //sb.Append(i.Trim() + "\n");
+                string temp1 = Regex.Replace(i, @"^\s+", "");
+                temp1 = Regex.Replace(temp1, @"\s+$", "");
+                sb.Append(temp1 + "\n");
             }
             richTextBox1.Text = sb.ToString();
             sb.Clear();
@@ -464,20 +466,25 @@ namespace text_edit
         }
         //==============
         //===============
+        //检查章节名称
         private void checkTitle_Click(object sender, EventArgs e)
         {
+            //清空表格
+            dataGridView1.Rows.Clear();
             //检查章节是否正确
-            foreach (string i in richTextBox1.Lines)
+            int i = 0;
+            foreach (string line in richTextBox1.Lines)
             {
                 //检查行中是否存在章节名称
-                string result = re.Match(i, unitFromat_txt.Text);
+                string result = re.Match(line, unitFromat_txt.Text);
                 if (result != "")
                 {
                     if (aloneLine.Checked)
-                        showMessage(i);
+                        showMessage(i, line);
                     else
-                        showMessage(result);
+                        showMessage(i, result);
                 }
+                i++;
             }
         }
 
@@ -518,7 +525,40 @@ namespace text_edit
             config.AppSettings.SectionInformation.ForceSave = true;
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
-            showMessage("段落设置保存成功!");
+            MessageBox.Show("段落设置保存成功!");
+        }
+
+        //文本保存提示
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            textFilePath.Text = "*文件路径：";
+        }
+
+        //章节双击索引
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                //获取行数
+                int select_index = dataGridView1.CurrentRow.Index;
+                string index_str = dataGridView1.Rows[select_index].Cells["hang"].Value.ToString();
+                try
+                {
+                    int line_index = int.Parse(index_str);
+                    //自动换行后，richtextbox的真实行数不等于原来的行数，因此需要先关掉自动换行，再将光标移动到章节所在行
+                    if(richTextBox1.WordWrap)
+                        richTextBox1.WordWrap = false;
+                    richTextBox1.SelectionStart = richTextBox1.GetFirstCharIndexFromLine(line_index);
+                    richTextBox1.Focus();
+                    //如果之前是开启了自动换行，则此时应该将变换状态转换回去
+                    richTextBox1.WordWrap = autoEnter.Checked;
+                    richTextBox1.ScrollToCaret();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("错误信息:" + ex.Message, "Error");
+                }
+            }
         }
     }
 }
