@@ -436,7 +436,7 @@ namespace text_edit
             foreach (string line in richTextBox1.Lines)
             {
                 //空行不保留
-                if (line.Length <= 0)
+                if (Regex.Match(line, @"^\s*$").Success)
                     continue;
                 duanluo += line;
                 //检查是否为章节列
@@ -461,6 +461,8 @@ namespace text_edit
                     duanluo = "";
                 }
             }
+            if (duanluo.Length > 0)
+                sb.Append(duanluo);
             richTextBox1.Text = sb.ToString();
             sb.Clear();
         }
@@ -500,19 +502,22 @@ namespace text_edit
             string line_temp;
             foreach (string line in richTextBox1.Lines)
             {
-                line_temp = line;
-                //检查行中是否存在章节名称
-                Match result = Regex.Match(line, unitFromat_txt.Text);
-                if (result.Success)
+                if (!Regex.Match(line, @"^\s*$").Success)
                 {
-                    if (aloneLine.Checked)
-                        //文章标题单独一行
-                        line_temp = "\n" + line + "\n";
-                    else
-                        //格式错乱，只分割出章节
-                        line_temp = "\n" + result.Value + "\n\n" + line.Substring(result.Value.Length);
+                    line_temp = line;
+                    //检查行中是否存在章节名称
+                    Match result = Regex.Match(line, unitFromat_txt.Text);
+                    if (result.Success)
+                    {
+                        if (aloneLine.Checked)
+                            //文章标题单独一行
+                            line_temp = "\n" + line + "\n";
+                        else
+                            //格式错乱，只分割出章节
+                            line_temp = "\n" + result.Value + "\n\n" + line.Substring(result.Value.Length);
+                    }
+                    sb.Append(line_temp + "\n");
                 }
-                sb.Append(line_temp + "\n");
             }
             richTextBox1.Text = sb.ToString();
             sb.Clear();
