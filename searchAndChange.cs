@@ -132,10 +132,7 @@ namespace text_edit
                     searchTxt_Click(sender, e);
                 //替换
                 if (rtb.SelectedText.Length > 0) {
-                    if (zeZeOn.Checked)
-                        rtb.SelectedText = Regex.Replace(rtb.SelectedText, searchRulu.Text, changeTxt.Text);
-                    else
-                        rtb.SelectedText = changeTxt.Text;
+                    rtb.SelectedText = changeTxt.Text;
                 }
             }
             else
