@@ -54,7 +54,7 @@ namespace text_edit
             this.textBox1.Size = new System.Drawing.Size(452, 254);
             this.textBox1.TabIndex = 1;
             this.textBox1.TabStop = false;
-            this.textBox1.Text = "1.保存文件前请注意编码格式！如果看到是乱码的时候千万不要冲动保存，否则你原有的东西会被全部覆盖掉！";
+            this.textBox1.Text = "1.正则表达式的向上查找为按行查找第一个匹配值，无法查找到同一行的其他关键词，若有需要，建议正则查找仅使用向下查找方式。";
             // 
             // label2
             // 
