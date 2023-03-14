@@ -72,7 +72,7 @@ namespace text_edit
         {
             int start_point = rtb.SelectionStart;
             //获取全部文本，加快循环速度
-            string[] lines = rtb.Lines;
+            //string[] lines = rtb.Lines;
             //获取当前所在行数
             int line_index = rtb.GetLineFromCharIndex(start_point);
             //返回的结果
@@ -97,36 +97,39 @@ namespace text_edit
             //向下搜索
             else
             {
-                //检查选中状态
+                                //检查选中状态
                 if (rtb.SelectedText.Length > 0)
                     //开始查找位置应该后移
                     start_point += rtb.SelectedText.Length;
-                string line = lines[line_index];
-                if (line.Length > 0 && start_point + 1 < line.Length)
-                {
-                    result = Regex.Match(line.Substring(start_point, line.Length - start_point), rule);
-                    if (result.Success)
-                        index += start_point + result.Index;
-                }
-                else if (lines.Length > line_index + 1)
-                {
-                    result = Regex.Match(lines[++line_index], rule);
-                    if (result.Success)
-                        index = rtb.GetFirstCharIndexFromLine(line_index) + result.Index;
-                }
-                if (!result.Success)
-                {
-                    for (int i = line_index; i < lines.Length; i++)
-                    {
-                        //Console.WriteLine(lines[i]);
-                        result = Regex.Match(lines[i], rule);
-                        if (result.Success)
-                        {
-                            index = rtb.GetFirstCharIndexFromLine(i) + result.Index;
-                            break;
-                        }
-                    }
-                }
+                string text = rtb.Text.Substring(start_point);
+                result = Regex.Match(text, rule);
+                index = start_point + result.Index;
+                //string line = lines[line_index];
+                //if (line.Length > 0 && start_point + 1 < line.Length)
+                //{
+                //    result = Regex.Match(line.Substring(start_point, line.Length - start_point), rule);
+                //    if (result.Success)
+                //        index += start_point + result.Index;
+                //}
+                //else if (lines.Length > line_index + 1)
+                //{
+                //    result = Regex.Match(lines[++line_index], rule);
+                //    if (result.Success)
+                //        index = rtb.GetFirstCharIndexFromLine(line_index) + result.Index;
+                //}
+                //if (!result.Success)
+                //{
+                //    for (int i = line_index; i < lines.Length; i++)
+                //    {
+                //        //Console.WriteLine(lines[i]);
+                //        result = Regex.Match(lines[i], rule);
+                //        if (result.Success)
+                //        {
+                //            index = rtb.GetFirstCharIndexFromLine(i) + result.Index;
+                //            break;
+                //        }
+                //    }
+                //}
             }
             return new Tuple<int, Match>(index, result);
             //返回关键词的查找结果
