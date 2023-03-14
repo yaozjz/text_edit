@@ -1,7 +1,7 @@
 ﻿
-namespace text_edit
+namespace textEdit
 {
-    partial class mainFrom
+    partial class Form1
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -30,352 +30,273 @@ namespace text_edit
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainFrom));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.fileStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.filePath = new System.Windows.Forms.ToolStripStatusLabel();
+            this.nowLine = new System.Windows.Forms.ToolStripStatusLabel();
+            this.codingName = new System.Windows.Forms.ToolStripStatusLabel();
+            this.FontStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openText = new System.Windows.Forms.ToolStripMenuItem();
-            this.快速保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveText = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitSystem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.quickSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.otherSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.exit = new System.Windows.Forms.ToolStripMenuItem();
             this.操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchText = new System.Windows.Forms.ToolStripMenuItem();
-            this.geShiSet = new System.Windows.Forms.ToolStripMenuItem();
-            this.autoEnter = new System.Windows.Forms.ToolStripMenuItem();
-            this.文本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.去除文本中的空行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.去除所有空白字符ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.去除每行的开尾空格ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.autoParagraph = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutBt = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.OpenBt = new System.Windows.Forms.ToolStripButton();
-            this.saveBt = new System.Windows.Forms.ToolStripButton();
-            this.searchBt = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.exitBt = new System.Windows.Forms.ToolStripButton();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.textFilePath = new System.Windows.Forms.ToolStripStatusLabel();
-            this.filePath = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Now_index = new System.Windows.Forms.ToolStripStatusLabel();
-            this.coding_fun = new System.Windows.Forms.ToolStripStatusLabel();
-            this.txt_font = new System.Windows.Forms.ToolStripStatusLabel();
+            this.search = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClearNullLine = new System.Windows.Forms.ToolStripMenuItem();
+            this.TextTrim = new System.Windows.Forms.ToolStripMenuItem();
+            this.ParaFormat = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClearAllSpace = new System.Windows.Forms.ToolStripMenuItem();
+            this.格式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FontSetting = new System.Windows.Forms.ToolStripMenuItem();
+            this.AutoEnter = new System.Windows.Forms.ToolStripMenuItem();
+            this.about = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.saveJuMo = new System.Windows.Forms.Button();
-            this.DuanMo = new System.Windows.Forms.TextBox();
-            this.aloneLine = new System.Windows.Forms.CheckBox();
-            this.insertTileRule = new System.Windows.Forms.Button();
+            this.linesIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.saveDuanWei = new System.Windows.Forms.Button();
+            this.DuanWei = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.usualTitle = new System.Windows.Forms.ComboBox();
-            this.makeTitle = new System.Windows.Forms.Button();
-            this.checkTitle = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.unitFromat_txt = new System.Windows.Forms.TextBox();
+            this.CheckedTitle = new System.Windows.Forms.Button();
+            this.TitleIsAlone = new System.Windows.Forms.CheckBox();
+            this.TitleRule = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.clearMessage = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.mainText = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.clearLineN = new System.Windows.Forms.ToolStripMenuItem();
-            this.去除所有空白字符ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearTN = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyText = new System.Windows.Forms.ToolStripMenuItem();
+            this.PasteText = new System.Windows.Forms.ToolStripMenuItem();
             this.去除空行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.去除开头与结尾空格ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.自动整理段落ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ttName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.menuStrip1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileStatus,
+            this.filePath,
+            this.nowLine,
+            this.codingName,
+            this.FontStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 570);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1208, 22);
+            this.statusStrip1.TabIndex = 0;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // fileStatus
+            // 
+            this.fileStatus.Name = "fileStatus";
+            this.fileStatus.Size = new System.Drawing.Size(56, 17);
+            this.fileStatus.Text = "文件路径";
+            // 
+            // filePath
+            // 
+            this.filePath.Name = "filePath";
+            this.filePath.Size = new System.Drawing.Size(1016, 17);
+            this.filePath.Spring = true;
+            this.filePath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // nowLine
+            // 
+            this.nowLine.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
+            this.nowLine.Name = "nowLine";
+            this.nowLine.Size = new System.Drawing.Size(39, 17);
+            this.nowLine.Text = "第n行";
+            // 
+            // codingName
+            // 
+            this.codingName.Name = "codingName";
+            this.codingName.Size = new System.Drawing.Size(35, 17);
+            this.codingName.Text = "utf-8";
+            // 
+            // FontStatus
+            // 
+            this.FontStatus.Name = "FontStatus";
+            this.FontStatus.Size = new System.Drawing.Size(32, 17);
+            this.FontStatus.Text = "字体";
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件ToolStripMenuItem,
             this.操作ToolStripMenuItem,
-            this.文本ToolStripMenuItem,
-            this.aboutBt});
+            this.格式ToolStripMenuItem,
+            this.about});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1091, 25);
-            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1208, 27);
+            this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // 文件ToolStripMenuItem
             // 
             this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openText,
-            this.快速保存ToolStripMenuItem,
-            this.saveText,
-            this.exitSystem});
+            this.openFile,
+            this.quickSave,
+            this.otherSave,
+            this.exit});
             this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
             this.文件ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.文件ToolStripMenuItem.Text = "文件";
             // 
-            // openText
+            // openFile
             // 
-            this.openText.Name = "openText";
-            this.openText.ShortcutKeyDisplayString = "Ctrl+O";
-            this.openText.Size = new System.Drawing.Size(171, 22);
-            this.openText.Text = "打开文本";
-            this.openText.Click += new System.EventHandler(this.openText_Click);
+            this.openFile.Name = "openFile";
+            this.openFile.ShortcutKeyDisplayString = "Ctrl+O";
+            this.openFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openFile.Size = new System.Drawing.Size(190, 22);
+            this.openFile.Text = "打开文件";
+            this.openFile.Click += new System.EventHandler(this.openFile_Click);
             // 
-            // 快速保存ToolStripMenuItem
+            // quickSave
             // 
-            this.快速保存ToolStripMenuItem.Name = "快速保存ToolStripMenuItem";
-            this.快速保存ToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+S";
-            this.快速保存ToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.快速保存ToolStripMenuItem.Tag = "";
-            this.快速保存ToolStripMenuItem.Text = "快速保存";
-            this.快速保存ToolStripMenuItem.Click += new System.EventHandler(this.saveBt_Click);
+            this.quickSave.Name = "quickSave";
+            this.quickSave.ShortcutKeyDisplayString = "Ctrl+S";
+            this.quickSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.quickSave.Size = new System.Drawing.Size(190, 22);
+            this.quickSave.Text = "快速保存";
+            this.quickSave.Click += new System.EventHandler(this.quickSave_Click);
             // 
-            // saveText
+            // otherSave
             // 
-            this.saveText.Name = "saveText";
-            this.saveText.Size = new System.Drawing.Size(171, 22);
-            this.saveText.Text = "另存文本";
-            this.saveText.Click += new System.EventHandler(this.saveText_Click);
+            this.otherSave.Name = "otherSave";
+            this.otherSave.ShortcutKeyDisplayString = "Ctrl+Shift+S";
+            this.otherSave.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.otherSave.Size = new System.Drawing.Size(190, 22);
+            this.otherSave.Text = "另存为";
+            this.otherSave.Click += new System.EventHandler(this.otherSave_Click);
             // 
-            // exitSystem
+            // exit
             // 
-            this.exitSystem.Name = "exitSystem";
-            this.exitSystem.Size = new System.Drawing.Size(171, 22);
-            this.exitSystem.Text = "退出";
-            this.exitSystem.Click += new System.EventHandler(this.exitSystem_Click);
+            this.exit.Name = "exit";
+            this.exit.ShortcutKeys = System.Windows.Forms.Keys.F12;
+            this.exit.Size = new System.Drawing.Size(190, 22);
+            this.exit.Text = "退出";
+            this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
             // 操作ToolStripMenuItem
             // 
             this.操作ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchText,
-            this.geShiSet,
-            this.autoEnter});
+            this.search,
+            this.ClearNullLine,
+            this.TextTrim,
+            this.ParaFormat,
+            this.ClearAllSpace});
             this.操作ToolStripMenuItem.Name = "操作ToolStripMenuItem";
             this.操作ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.操作ToolStripMenuItem.Text = "操作";
             // 
-            // searchText
+            // search
             // 
-            this.searchText.Name = "searchText";
-            this.searchText.ShortcutKeyDisplayString = "Ctrl+F";
-            this.searchText.Size = new System.Drawing.Size(180, 22);
-            this.searchText.Text = "查找";
-            this.searchText.Click += new System.EventHandler(this.searchText_Click);
+            this.search.Name = "search";
+            this.search.ShortcutKeyDisplayString = "Ctrl+F";
+            this.search.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.search.Size = new System.Drawing.Size(205, 22);
+            this.search.Text = "搜索";
+            this.search.Click += new System.EventHandler(this.search_Click);
             // 
-            // geShiSet
+            // ClearNullLine
             // 
-            this.geShiSet.Name = "geShiSet";
-            this.geShiSet.Size = new System.Drawing.Size(180, 22);
-            this.geShiSet.Text = "字体";
-            this.geShiSet.Click += new System.EventHandler(this.geShiSet_Click);
+            this.ClearNullLine.Name = "ClearNullLine";
+            this.ClearNullLine.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.ClearNullLine.Size = new System.Drawing.Size(205, 22);
+            this.ClearNullLine.Text = "去除空行";
+            this.ClearNullLine.Click += new System.EventHandler(this.ClearNullLine_Click);
             // 
-            // autoEnter
+            // TextTrim
             // 
-            this.autoEnter.Name = "autoEnter";
-            this.autoEnter.Size = new System.Drawing.Size(180, 22);
-            this.autoEnter.Text = "自动换行";
-            this.autoEnter.CheckedChanged += new System.EventHandler(this.autoEnter_CheckedChanged);
-            this.autoEnter.Click += new System.EventHandler(this.autoEnter_Click);
+            this.TextTrim.Name = "TextTrim";
+            this.TextTrim.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.TextTrim.Size = new System.Drawing.Size(205, 22);
+            this.TextTrim.Text = "去除开头与结尾空格";
+            this.TextTrim.Click += new System.EventHandler(this.TextTrim_Click);
             // 
-            // 文本ToolStripMenuItem
+            // ParaFormat
             // 
-            this.文本ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.去除文本中的空行ToolStripMenuItem,
-            this.去除所有空白字符ToolStripMenuItem,
-            this.去除每行的开尾空格ToolStripMenuItem,
-            this.autoParagraph});
-            this.文本ToolStripMenuItem.Name = "文本ToolStripMenuItem";
-            this.文本ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.文本ToolStripMenuItem.Text = "文本";
+            this.ParaFormat.Name = "ParaFormat";
+            this.ParaFormat.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.ParaFormat.Size = new System.Drawing.Size(205, 22);
+            this.ParaFormat.Text = "整理段落";
+            this.ParaFormat.Click += new System.EventHandler(this.ParaFormat_Click);
             // 
-            // 去除文本中的空行ToolStripMenuItem
+            // ClearAllSpace
             // 
-            this.去除文本中的空行ToolStripMenuItem.Name = "去除文本中的空行ToolStripMenuItem";
-            this.去除文本中的空行ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.去除文本中的空行ToolStripMenuItem.Text = "去除文本中的空行";
-            this.去除文本中的空行ToolStripMenuItem.Click += new System.EventHandler(this.clearNullLine_Click);
+            this.ClearAllSpace.Name = "ClearAllSpace";
+            this.ClearAllSpace.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.ClearAllSpace.Size = new System.Drawing.Size(205, 22);
+            this.ClearAllSpace.Text = "去除所有空格";
+            this.ClearAllSpace.Click += new System.EventHandler(this.ClearAllSpace_Click);
             // 
-            // 去除所有空白字符ToolStripMenuItem
+            // 格式ToolStripMenuItem
             // 
-            this.去除所有空白字符ToolStripMenuItem.Name = "去除所有空白字符ToolStripMenuItem";
-            this.去除所有空白字符ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.去除所有空白字符ToolStripMenuItem.Text = "去除所有空白字符";
+            this.格式ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FontSetting,
+            this.AutoEnter});
+            this.格式ToolStripMenuItem.Name = "格式ToolStripMenuItem";
+            this.格式ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.格式ToolStripMenuItem.Text = "格式";
             // 
-            // 去除每行的开尾空格ToolStripMenuItem
+            // FontSetting
             // 
-            this.去除每行的开尾空格ToolStripMenuItem.Name = "去除每行的开尾空格ToolStripMenuItem";
-            this.去除每行的开尾空格ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.去除每行的开尾空格ToolStripMenuItem.Text = "去除每行的开、尾空格";
-            this.去除每行的开尾空格ToolStripMenuItem.Click += new System.EventHandler(this.clearLineN_Click);
+            this.FontSetting.Name = "FontSetting";
+            this.FontSetting.Size = new System.Drawing.Size(180, 22);
+            this.FontSetting.Text = "字体";
+            this.FontSetting.Click += new System.EventHandler(this.FontSetting_Click);
             // 
-            // autoParagraph
+            // AutoEnter
             // 
-            this.autoParagraph.Name = "autoParagraph";
-            this.autoParagraph.Size = new System.Drawing.Size(196, 22);
-            this.autoParagraph.Text = "自动整理段落";
-            this.autoParagraph.Click += new System.EventHandler(this.autoParagraph_Click);
+            this.AutoEnter.Name = "AutoEnter";
+            this.AutoEnter.Size = new System.Drawing.Size(180, 22);
+            this.AutoEnter.Text = "自动换行";
+            this.AutoEnter.CheckedChanged += new System.EventHandler(this.AutoEnter_CheckedChanged);
+            this.AutoEnter.Click += new System.EventHandler(this.AutoEnter_Click);
             // 
-            // aboutBt
+            // about
             // 
-            this.aboutBt.Name = "aboutBt";
-            this.aboutBt.Size = new System.Drawing.Size(44, 21);
-            this.aboutBt.Text = "关于";
-            this.aboutBt.Click += new System.EventHandler(this.aboutBt_Click);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenBt,
-            this.saveBt,
-            this.searchBt,
-            this.toolStripButton1,
-            this.exitBt});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 25);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1091, 25);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // OpenBt
-            // 
-            this.OpenBt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.OpenBt.Image = global::text_edit.Properties.Resources.icon_open;
-            this.OpenBt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OpenBt.Name = "OpenBt";
-            this.OpenBt.Size = new System.Drawing.Size(23, 22);
-            this.OpenBt.Text = "打开文件";
-            this.OpenBt.Click += new System.EventHandler(this.openText_Click);
-            // 
-            // saveBt
-            // 
-            this.saveBt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.saveBt.Image = global::text_edit.Properties.Resources.saveBlue;
-            this.saveBt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveBt.Name = "saveBt";
-            this.saveBt.Size = new System.Drawing.Size(23, 22);
-            this.saveBt.Text = "快速保存";
-            this.saveBt.Click += new System.EventHandler(this.saveBt_Click);
-            // 
-            // searchBt
-            // 
-            this.searchBt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.searchBt.Image = global::text_edit.Properties.Resources.search_icon;
-            this.searchBt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.searchBt.Name = "searchBt";
-            this.searchBt.Size = new System.Drawing.Size(23, 22);
-            this.searchBt.Text = "查找";
-            this.searchBt.Click += new System.EventHandler(this.searchText_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::text_edit.Properties.Resources.设_置;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "字体设置";
-            this.toolStripButton1.Click += new System.EventHandler(this.geShiSet_Click);
-            // 
-            // exitBt
-            // 
-            this.exitBt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.exitBt.Image = global::text_edit.Properties.Resources.exit;
-            this.exitBt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.exitBt.Name = "exitBt";
-            this.exitBt.Size = new System.Drawing.Size(23, 22);
-            this.exitBt.Text = "退出";
-            this.exitBt.Click += new System.EventHandler(this.exitSystem_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.textFilePath,
-            this.filePath,
-            this.Now_index,
-            this.coding_fun,
-            this.txt_font});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 598);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1091, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // textFilePath
-            // 
-            this.textFilePath.Name = "textFilePath";
-            this.textFilePath.Size = new System.Drawing.Size(68, 17);
-            this.textFilePath.Text = "文件路径：";
-            // 
-            // filePath
-            // 
-            this.filePath.Name = "filePath";
-            this.filePath.Size = new System.Drawing.Size(843, 17);
-            this.filePath.Spring = true;
-            this.filePath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Now_index
-            // 
-            this.Now_index.Name = "Now_index";
-            this.Now_index.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.Now_index.Size = new System.Drawing.Size(49, 17);
-            this.Now_index.Text = "第n行";
-            // 
-            // coding_fun
-            // 
-            this.coding_fun.Name = "coding_fun";
-            this.coding_fun.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.coding_fun.Size = new System.Drawing.Size(62, 17);
-            this.coding_fun.Text = "UTF-8";
-            // 
-            // txt_font
-            // 
-            this.txt_font.Name = "txt_font";
-            this.txt_font.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.txt_font.Size = new System.Drawing.Size(52, 17);
-            this.txt_font.Text = "字体";
+            this.about.Name = "about";
+            this.about.Size = new System.Drawing.Size(44, 21);
+            this.about.Text = "关于";
+            this.about.Click += new System.EventHandler(this.about_Click);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.splitContainer1.BackColor = System.Drawing.SystemColors.GrayText;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 50);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
-            this.splitContainer1.Panel1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1091, 548);
-            this.splitContainer1.SplitterDistance = 204;
-            this.splitContainer1.SplitterWidth = 5;
-            this.splitContainer1.TabIndex = 3;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.clearMessage);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(204, 548);
-            this.panel1.TabIndex = 0;
+            this.splitContainer1.Panel2.Controls.Add(this.mainText);
+            this.splitContainer1.Size = new System.Drawing.Size(1208, 543);
+            this.splitContainer1.SplitterDistance = 218;
+            this.splitContainer1.TabIndex = 2;
             // 
             // dataGridView1
             // 
@@ -385,294 +306,254 @@ namespace text_edit
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.hang,
-            this.ttName});
-            this.dataGridView1.Location = new System.Drawing.Point(2, 356);
+            this.linesIndex,
+            this.titleNames});
+            this.dataGridView1.Location = new System.Drawing.Point(0, 185);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(203, 189);
-            this.dataGridView1.TabIndex = 12;
+            this.dataGridView1.Size = new System.Drawing.Size(219, 355);
+            this.dataGridView1.TabIndex = 1;
             this.dataGridView1.TabStop = false;
-            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 
-            // panel2
+            // linesIndex
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.linesIndex.FillWeight = 50.76142F;
+            this.linesIndex.HeaderText = "行";
+            this.linesIndex.MinimumWidth = 30;
+            this.linesIndex.Name = "linesIndex";
+            this.linesIndex.ReadOnly = true;
+            // 
+            // titleNames
+            // 
+            this.titleNames.FillWeight = 149.2386F;
+            this.titleNames.HeaderText = "章节名称";
+            this.titleNames.Name = "titleNames";
+            this.titleNames.ReadOnly = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.SystemColors.Window;
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.saveJuMo);
-            this.panel2.Controls.Add(this.DuanMo);
-            this.panel2.Controls.Add(this.aloneLine);
-            this.panel2.Controls.Add(this.insertTileRule);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.usualTitle);
-            this.panel2.Controls.Add(this.makeTitle);
-            this.panel2.Controls.Add(this.checkTitle);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.unitFromat_txt);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(203, 321);
-            this.panel2.TabIndex = 11;
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.saveDuanWei);
+            this.panel1.Controls.Add(this.DuanWei);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.usualTitle);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.CheckedTitle);
+            this.panel1.Controls.Add(this.TitleIsAlone);
+            this.panel1.Controls.Add(this.TitleRule);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(1, 3);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(218, 182);
+            this.panel1.TabIndex = 0;
             // 
-            // label4
+            // saveDuanWei
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 222);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 20);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "段落结尾形式：";
+            this.saveDuanWei.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveDuanWei.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.saveDuanWei.Location = new System.Drawing.Point(143, 152);
+            this.saveDuanWei.Margin = new System.Windows.Forms.Padding(0);
+            this.saveDuanWei.MinimumSize = new System.Drawing.Size(43, 23);
+            this.saveDuanWei.Name = "saveDuanWei";
+            this.saveDuanWei.Size = new System.Drawing.Size(71, 23);
+            this.saveDuanWei.TabIndex = 8;
+            this.saveDuanWei.TabStop = false;
+            this.saveDuanWei.Text = "保存";
+            this.saveDuanWei.UseVisualStyleBackColor = true;
+            this.saveDuanWei.Click += new System.EventHandler(this.saveDuanWei_Click);
             // 
-            // saveJuMo
+            // DuanWei
             // 
-            this.saveJuMo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveJuMo.Font = new System.Drawing.Font("幼圆", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.saveJuMo.Location = new System.Drawing.Point(137, 281);
-            this.saveJuMo.Name = "saveJuMo";
-            this.saveJuMo.Size = new System.Drawing.Size(60, 24);
-            this.saveJuMo.TabIndex = 10;
-            this.saveJuMo.Text = "保存";
-            this.saveJuMo.UseVisualStyleBackColor = true;
-            this.saveJuMo.Click += new System.EventHandler(this.saveJuMo_Click);
-            // 
-            // DuanMo
-            // 
-            this.DuanMo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.DuanWei.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DuanMo.Location = new System.Drawing.Point(3, 249);
-            this.DuanMo.Name = "DuanMo";
-            this.DuanMo.Size = new System.Drawing.Size(194, 26);
-            this.DuanMo.TabIndex = 9;
-            // 
-            // aloneLine
-            // 
-            this.aloneLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aloneLine.AutoSize = true;
-            this.aloneLine.Checked = true;
-            this.aloneLine.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.aloneLine.Location = new System.Drawing.Point(16, 77);
-            this.aloneLine.Name = "aloneLine";
-            this.aloneLine.Size = new System.Drawing.Size(182, 24);
-            this.aloneLine.TabIndex = 8;
-            this.aloneLine.Text = "章节与章节名为独立一行";
-            this.aloneLine.UseVisualStyleBackColor = true;
-            // 
-            // insertTileRule
-            // 
-            this.insertTileRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.insertTileRule.Font = new System.Drawing.Font("幼圆", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.insertTileRule.Location = new System.Drawing.Point(140, 191);
-            this.insertTileRule.Name = "insertTileRule";
-            this.insertTileRule.Size = new System.Drawing.Size(60, 24);
-            this.insertTileRule.TabIndex = 7;
-            this.insertTileRule.Text = "填入";
-            this.insertTileRule.UseVisualStyleBackColor = true;
-            this.insertTileRule.Click += new System.EventHandler(this.insertTileRule_Click);
+            this.DuanWei.Location = new System.Drawing.Point(2, 123);
+            this.DuanWei.Name = "DuanWei";
+            this.DuanWei.Size = new System.Drawing.Size(212, 26);
+            this.DuanWei.TabIndex = 7;
+            this.DuanWei.TabStop = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 157);
+            this.label3.Location = new System.Drawing.Point(4, 100);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 20);
+            this.label3.Size = new System.Drawing.Size(107, 20);
             this.label3.TabIndex = 6;
-            this.label3.Text = "常见形式\r\n";
+            this.label3.Text = "段落结尾形式：";
             // 
             // usualTitle
             // 
             this.usualTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.usualTitle.FormattingEnabled = true;
-            this.usualTitle.Location = new System.Drawing.Point(71, 154);
+            this.usualTitle.Location = new System.Drawing.Point(72, 63);
             this.usualTitle.Name = "usualTitle";
-            this.usualTitle.Size = new System.Drawing.Size(127, 28);
+            this.usualTitle.Size = new System.Drawing.Size(140, 28);
             this.usualTitle.TabIndex = 5;
-            // 
-            // makeTitle
-            // 
-            this.makeTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.makeTitle.Font = new System.Drawing.Font("幼圆", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.makeTitle.Location = new System.Drawing.Point(113, 109);
-            this.makeTitle.Name = "makeTitle";
-            this.makeTitle.Size = new System.Drawing.Size(85, 24);
-            this.makeTitle.TabIndex = 4;
-            this.makeTitle.Text = "一键整理";
-            this.makeTitle.UseVisualStyleBackColor = true;
-            this.makeTitle.Click += new System.EventHandler(this.makeTitle_Click);
-            // 
-            // checkTitle
-            // 
-            this.checkTitle.Font = new System.Drawing.Font("幼圆", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkTitle.Location = new System.Drawing.Point(7, 109);
-            this.checkTitle.Name = "checkTitle";
-            this.checkTitle.Size = new System.Drawing.Size(49, 24);
-            this.checkTitle.TabIndex = 3;
-            this.checkTitle.Text = "检查";
-            this.checkTitle.UseVisualStyleBackColor = true;
-            this.checkTitle.Click += new System.EventHandler(this.checkTitle_Click);
+            this.usualTitle.SelectedIndexChanged += new System.EventHandler(this.usualTitle_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 22);
+            this.label2.Location = new System.Drawing.Point(3, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(173, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "章节标题形式(正则表达式)";
+            this.label2.Size = new System.Drawing.Size(79, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "常见形式：";
             // 
-            // unitFromat_txt
+            // CheckedTitle
             // 
-            this.unitFromat_txt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.CheckedTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CheckedTitle.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CheckedTitle.Location = new System.Drawing.Point(143, 36);
+            this.CheckedTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.CheckedTitle.MinimumSize = new System.Drawing.Size(43, 23);
+            this.CheckedTitle.Name = "CheckedTitle";
+            this.CheckedTitle.Size = new System.Drawing.Size(71, 23);
+            this.CheckedTitle.TabIndex = 3;
+            this.CheckedTitle.TabStop = false;
+            this.CheckedTitle.Text = "检查";
+            this.CheckedTitle.UseVisualStyleBackColor = true;
+            this.CheckedTitle.Click += new System.EventHandler(this.CheckedTitle_Click);
+            // 
+            // TitleIsAlone
+            // 
+            this.TitleIsAlone.AutoSize = true;
+            this.TitleIsAlone.Checked = true;
+            this.TitleIsAlone.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.TitleIsAlone.Location = new System.Drawing.Point(6, 35);
+            this.TitleIsAlone.Name = "TitleIsAlone";
+            this.TitleIsAlone.Size = new System.Drawing.Size(140, 24);
+            this.TitleIsAlone.TabIndex = 2;
+            this.TitleIsAlone.TabStop = false;
+            this.TitleIsAlone.Text = "章节名为独立一行";
+            this.TitleIsAlone.UseVisualStyleBackColor = true;
+            // 
+            // TitleRule
+            // 
+            this.TitleRule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.unitFromat_txt.Location = new System.Drawing.Point(4, 45);
-            this.unitFromat_txt.Name = "unitFromat_txt";
-            this.unitFromat_txt.Size = new System.Drawing.Size(195, 26);
-            this.unitFromat_txt.TabIndex = 1;
+            this.TitleRule.Location = new System.Drawing.Point(72, 5);
+            this.TitleRule.Name = "TitleRule";
+            this.TitleRule.Size = new System.Drawing.Size(142, 26);
+            this.TitleRule.TabIndex = 1;
+            this.TitleRule.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(4, 3);
+            this.label1.Location = new System.Drawing.Point(3, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 19);
+            this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "目录整理";
+            this.label1.Text = "目录整理：";
             // 
-            // clearMessage
+            // timer1
             // 
-            this.clearMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearMessage.Font = new System.Drawing.Font("幼圆", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.clearMessage.Location = new System.Drawing.Point(2, 327);
-            this.clearMessage.Margin = new System.Windows.Forms.Padding(0);
-            this.clearMessage.Name = "clearMessage";
-            this.clearMessage.Size = new System.Drawing.Size(203, 26);
-            this.clearMessage.TabIndex = 10;
-            this.clearMessage.TabStop = false;
-            this.clearMessage.Text = "清除记录";
-            this.clearMessage.UseVisualStyleBackColor = true;
-            this.clearMessage.Click += new System.EventHandler(this.clearMessage_Click);
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // richTextBox1
+            // mainText
             // 
-            this.richTextBox1.ContextMenuStrip = this.contextMenuStrip1;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(882, 548);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.WordWrap = false;
-            this.richTextBox1.SelectionChanged += new System.EventHandler(this.richTextBox1_SelectionChanged);
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-            this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
+            this.mainText.AcceptsTab = true;
+            this.mainText.ContextMenuStrip = this.contextMenuStrip1;
+            this.mainText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainText.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.mainText.Location = new System.Drawing.Point(0, 0);
+            this.mainText.Name = "mainText";
+            this.mainText.Size = new System.Drawing.Size(986, 543);
+            this.mainText.TabIndex = 0;
+            this.mainText.Text = "";
+            this.mainText.WordWrap = false;
+            this.mainText.TextChanged += new System.EventHandler(this.mainText_TextChanged);
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clearLineN,
-            this.去除所有空白字符ToolStripMenuItem1,
-            this.clearTN,
+            this.CopyText,
+            this.PasteText,
             this.去除空行ToolStripMenuItem,
+            this.去除开头与结尾空格ToolStripMenuItem,
             this.自动整理段落ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(185, 114);
             // 
-            // clearLineN
+            // CopyText
             // 
-            this.clearLineN.Name = "clearLineN";
-            this.clearLineN.Size = new System.Drawing.Size(208, 22);
-            this.clearLineN.Text = "去除当前行空白字符";
-            this.clearLineN.Click += new System.EventHandler(this.clearLineN_Click);
+            this.CopyText.Name = "CopyText";
+            this.CopyText.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.CopyText.Size = new System.Drawing.Size(184, 22);
+            this.CopyText.Text = "复制";
+            this.CopyText.Click += new System.EventHandler(this.CopyText_Click);
             // 
-            // 去除所有空白字符ToolStripMenuItem1
+            // PasteText
             // 
-            this.去除所有空白字符ToolStripMenuItem1.Name = "去除所有空白字符ToolStripMenuItem1";
-            this.去除所有空白字符ToolStripMenuItem1.Size = new System.Drawing.Size(208, 22);
-            this.去除所有空白字符ToolStripMenuItem1.Text = "去除所有空白字符";
-            this.去除所有空白字符ToolStripMenuItem1.Click += new System.EventHandler(this.clearNull_Click);
-            // 
-            // clearTN
-            // 
-            this.clearTN.Name = "clearTN";
-            this.clearTN.Size = new System.Drawing.Size(208, 22);
-            this.clearTN.Text = "去除开头与尾部空白字符";
-            this.clearTN.Click += new System.EventHandler(this.clearTN_Click);
+            this.PasteText.Name = "PasteText";
+            this.PasteText.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.PasteText.Size = new System.Drawing.Size(184, 22);
+            this.PasteText.Text = "粘贴";
+            this.PasteText.Click += new System.EventHandler(this.PasteText_Click);
             // 
             // 去除空行ToolStripMenuItem
             // 
             this.去除空行ToolStripMenuItem.Name = "去除空行ToolStripMenuItem";
-            this.去除空行ToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.去除空行ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.去除空行ToolStripMenuItem.Text = "去除空行";
-            this.去除空行ToolStripMenuItem.Click += new System.EventHandler(this.clearNullLine_Click);
+            this.去除空行ToolStripMenuItem.Click += new System.EventHandler(this.ClearNullLine_Click);
+            // 
+            // 去除开头与结尾空格ToolStripMenuItem
+            // 
+            this.去除开头与结尾空格ToolStripMenuItem.Name = "去除开头与结尾空格ToolStripMenuItem";
+            this.去除开头与结尾空格ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.去除开头与结尾空格ToolStripMenuItem.Text = "去除开头与结尾空格";
+            this.去除开头与结尾空格ToolStripMenuItem.Click += new System.EventHandler(this.TextTrim_Click);
             // 
             // 自动整理段落ToolStripMenuItem
             // 
             this.自动整理段落ToolStripMenuItem.Name = "自动整理段落ToolStripMenuItem";
-            this.自动整理段落ToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.自动整理段落ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.自动整理段落ToolStripMenuItem.Text = "自动整理段落";
-            this.自动整理段落ToolStripMenuItem.Click += new System.EventHandler(this.autoParagraph_Click);
+            this.自动整理段落ToolStripMenuItem.Click += new System.EventHandler(this.ParaFormat_Click);
             // 
-            // hang
+            // Form1
             // 
-            this.hang.FillWeight = 50.76142F;
-            this.hang.HeaderText = "行";
-            this.hang.Name = "hang";
-            this.hang.ReadOnly = true;
-            // 
-            // ttName
-            // 
-            this.ttName.FillWeight = 149.2386F;
-            this.ttName.HeaderText = "章节名称";
-            this.ttName.Name = "ttName";
-            this.ttName.ReadOnly = true;
-            // 
-            // mainFrom
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1091, 620);
+            this.ClientSize = new System.Drawing.Size(1208, 592);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.Font = new System.Drawing.Font("幼圆", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "mainFrom";
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "文本编辑器";
-            this.Activated += new System.EventHandler(this.mainFrom_Activated);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mainFrom_KeyDown);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.Text = "小说文本编辑器";
+            this.Activated += new System.EventHandler(this.Form1_Activated);
+            this.Leave += new System.EventHandler(this.Form1_Leave);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -681,60 +562,50 @@ namespace text_edit
 
         #endregion
 
+        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openText;
-        private System.Windows.Forms.ToolStripMenuItem saveText;
-        private System.Windows.Forms.ToolStripMenuItem exitSystem;
+        private System.Windows.Forms.ToolStripMenuItem openFile;
+        private System.Windows.Forms.ToolStripMenuItem quickSave;
+        private System.Windows.Forms.ToolStripMenuItem otherSave;
+        private System.Windows.Forms.ToolStripMenuItem exit;
         private System.Windows.Forms.ToolStripMenuItem 操作ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem searchText;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton OpenBt;
-        private System.Windows.Forms.ToolStripButton searchBt;
-        private System.Windows.Forms.ToolStripButton saveBt;
-        private System.Windows.Forms.ToolStripButton exitBt;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 格式ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem about;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button clearMessage;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.ToolStripStatusLabel textFilePath;
+        private System.Windows.Forms.ToolStripStatusLabel fileStatus;
         private System.Windows.Forms.ToolStripStatusLabel filePath;
-        private System.Windows.Forms.ToolStripStatusLabel Now_index;
-        private System.Windows.Forms.ToolStripMenuItem geShiSet;
-        private System.Windows.Forms.ToolStripStatusLabel coding_fun;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripStatusLabel txt_font;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ToolStripMenuItem 快速保存ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutBt;
-        private System.Windows.Forms.ToolStripMenuItem autoEnter;
-        private System.Windows.Forms.ToolStripMenuItem 文本ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 去除文本中的空行ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 去除所有空白字符ToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem clearLineN;
-        private System.Windows.Forms.ToolStripMenuItem 去除所有空白字符ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem clearTN;
-        private System.Windows.Forms.ToolStripMenuItem 去除每行的开尾空格ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 去除空行ToolStripMenuItem;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripMenuItem autoParagraph;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox unitFromat_txt;
-        private System.Windows.Forms.Button checkTitle;
-        private System.Windows.Forms.Button makeTitle;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox usualTitle;
-        private System.Windows.Forms.Button insertTileRule;
-        private System.Windows.Forms.ToolStripMenuItem 自动整理段落ToolStripMenuItem;
-        private System.Windows.Forms.CheckBox aloneLine;
-        private System.Windows.Forms.Button saveJuMo;
-        private System.Windows.Forms.TextBox DuanMo;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripStatusLabel nowLine;
+        private System.Windows.Forms.ToolStripStatusLabel codingName;
+        private System.Windows.Forms.ToolStripMenuItem search;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hang;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ttName;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn linesIndex;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleNames;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox TitleRule;
+        private System.Windows.Forms.CheckBox TitleIsAlone;
+        private System.Windows.Forms.Button CheckedTitle;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox usualTitle;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox DuanWei;
+        private System.Windows.Forms.Button saveDuanWei;
+        private System.Windows.Forms.ToolStripMenuItem FontSetting;
+        private System.Windows.Forms.ToolStripMenuItem AutoEnter;
+        private System.Windows.Forms.ToolStripStatusLabel FontStatus;
+        private System.Windows.Forms.ToolStripMenuItem ClearNullLine;
+        private System.Windows.Forms.ToolStripMenuItem TextTrim;
+        private System.Windows.Forms.ToolStripMenuItem ClearAllSpace;
+        private System.Windows.Forms.ToolStripMenuItem ParaFormat;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.RichTextBox mainText;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem CopyText;
+        private System.Windows.Forms.ToolStripMenuItem PasteText;
+        private System.Windows.Forms.ToolStripMenuItem 去除空行ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 去除开头与结尾空格ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 自动整理段落ToolStripMenuItem;
     }
 }
 

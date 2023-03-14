@@ -1,0 +1,12 @@
+G:\git仓库\software\textEdit\bin\Debug\textEdit.exe.config
+G:\git仓库\software\textEdit\bin\Debug\textEdit.exe
+G:\git仓库\software\textEdit\bin\Debug\textEdit.pdb
+G:\git仓库\software\textEdit\obj\Debug\textEdit.csproj.AssemblyReference.cache
+G:\git仓库\software\textEdit\obj\Debug\textEdit.Form1.resources
+G:\git仓库\software\textEdit\obj\Debug\textEdit.Properties.Resources.resources
+G:\git仓库\software\textEdit\obj\Debug\textEdit.csproj.GenerateResource.cache
+G:\git仓库\software\textEdit\obj\Debug\textEdit.csproj.CoreCompileInputs.cache
+G:\git仓库\software\textEdit\obj\Debug\textEdit.exe
+G:\git仓库\software\textEdit\obj\Debug\textEdit.pdb
+G:\git仓库\software\textEdit\obj\Debug\textEdit.about.resources
+G:\git仓库\software\textEdit\obj\Debug\textEdit.SearchForm.resources

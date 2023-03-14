@@ -1,28 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Configuration;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
-namespace text_edit
+namespace textEdit
 {
-    public partial class mainFrom : Form
+    public partial class Form1 : Form
     {
-        public mainFrom()
+        public Form1()
         {
             InitializeComponent();
+            mainText.LanguageOption = RichTextBoxLanguageOptions.UIFonts; //防止中英文字体不一致
             //文本拖拽导入功能
-            richTextBox1.AllowDrop = true;
-            richTextBox1.DragEnter += new DragEventHandler(richTextBox1_DragEnter);
-            richTextBox1.DragDrop += new DragEventHandler(richTextBox1_DragDrop);
+            mainText.AllowDrop = true;
+            mainText.DragEnter += new DragEventHandler(mainText_DragEnter);
+            mainText.DragDrop += new DragEventHandler(mainText_DragDrop);
             //初始化常见章节套路
             //从文件中读取
 
@@ -34,27 +29,33 @@ namespace text_edit
                 while (line != null)
                 {
                     string[] strArry = line.Split('=');
-                    usualRule.Add(strArry[1]);
+                    ruleList.Add(strArry[1]);
                     usualTitle.Items.Add(strArry[0]);
                     line = sr.ReadLine();
                 }
                 sr.Close();
                 fs.Close();
+                usualTitle.SelectedIndex = 0;
             }
             catch
             {
                 MessageBox.Show("文章规则文件无法索引，请放置rule.txt文件到软件根目录下。", "提示");
             }
             //加载段落格式
-            DuanMo.Text = ConfigurationManager.AppSettings["DuanMo"];
+            DuanWei.Text = ConfigurationManager.AppSettings["DuanMo"];
         }
         //=============参数===========//
 
         //常用章节名称正则表达式
-        private List<string> usualRule = new List<string>();
-
-        //================常用函数=================//
-        private void richTextBox1_DragEnter(object sender, DragEventArgs e)
+        private List<string> ruleList = new List<string>();
+        public RichTextBox TB
+        {
+            get { return mainText; }
+            set { mainText = value; }
+        }
+        //==============参数END==============//
+        //拖拽打开
+        private void mainText_DragEnter(object sender, DragEventArgs e)
         {
             //处理拖放事件
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -62,7 +63,7 @@ namespace text_edit
             else
                 e.Effect = DragDropEffects.None;
         }
-        private void richTextBox1_DragDrop(object sender, DragEventArgs e)
+        private void mainText_DragDrop(object sender, DragEventArgs e)
         {
             //防止多个文件拖拽，只取第一个文件显示
             Array arrayFileName = (Array)e.Data.GetData(DataFormats.FileDrop);
@@ -74,112 +75,45 @@ namespace text_edit
             else
                 MessageBox.Show("不支持打开该格式");
         }
-        //清除日志记录
-        private void clearMessage_Click(object sender, EventArgs e)
+        //===============常用函数===========//
+        //刷新当前聚焦的行数
+        private void fresh_index()
         {
-            dataGridView1.Rows.Clear();
+            int foucusIndex = mainText.SelectionStart;
+            nowLine.Text = "第" + (mainText.GetLineFromCharIndex(foucusIndex) + 1) + "行";
         }
-        //章节显示
-        private void showMessage(int line_index, string ttName)
-        {
-            string[] msg = { line_index.ToString(), ttName };
-            dataGridView1.Rows.Add(msg);
-        }
-
+        //打开txt文件
         private void OpenEcode(string fileName)
         {
             filePath.Text = fileName;
             Encoding ecode = TextFormat.GetTextFileEncodingType(fileName);
-            coding_fun.Text = ecode.BodyName;
-            string[] arr = new string[2] { fileName, coding_fun.Text };
-            Thread t = new Thread(ThreadProc);
-            t.IsBackground = true;
-            t.Start(arr);
-
-        }
-        //==========委托
-        private void ThreadProc(object arr)
-        {
-            bool stopFlag = false;
+            codingName.Text = ecode.BodyName;
+            //文件流
             try
             {
-                string[] arrStr = arr as string[];
-                //richTextBox1.LoadFile(fileName, RichTextBoxStreamType.PlainText);
-                FileStream fs = new FileStream(arrStr[0], FileMode.Open, FileAccess.Read);
-                StreamReader sr = new StreamReader(fs, Encoding.GetEncoding(arrStr[1]));
+                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                StreamReader sr = new StreamReader(fs, Encoding.GetEncoding(ecode.BodyName));
 
                 string line = sr.ReadLine();
                 StringBuilder sb = new StringBuilder();
-
-                //按行更新
-                int maxDisplayline = 1 * 3000; // 1000行
-                //清空当前的文本
-                this.Invoke((EventHandler)delegate
-                {
-                    richTextBox1.Text = "";
-                    richTextBox1.Focus();
-                });
-
-                int i = 0;
                 while (line != null)
                 {
-                    if (stopFlag)
-                        return;
-                    sb = sb.Append(line + "\n");
-                    if (i > 0 && i % maxDisplayline == 0)
-                    {
-                        this.Invoke((EventHandler)delegate
-                        {
-                            richTextBox1.AppendText(sb.ToString());
-                        });
-                        sb.Clear();
-                        //maxDisplayline = maxDisplayline * ((int)Math.Sqrt(i / maxDisplayline));
-                    }
+                    sb.Append(line + Environment.NewLine);
                     line = sr.ReadLine();
-                    i++;
                 }
-                if (sb.Length > 0)
-                {
-                    this.Invoke((EventHandler)delegate
-                    {
-                        richTextBox1.AppendText(sb.ToString());
-                    });
-                    sb.Clear();
-                }
+                mainText.Text = sb.ToString();
+                sb.Clear();
                 sr.Close();
+                fs.Close();
             }
             catch (Exception ex)
             {
-                stopFlag = true;
-                MessageBox.Show("打开失败，请选择合适的文件。" + ex.Message);
+                MessageBox.Show("Error:" + ex.Message);
             }
+            //清空表格
+            dataGridView1.Rows.Clear();
         }
-        //============END
-        //刷新当前聚焦的行数
-        private void fresh_index()
-        {
-            int foucusIndex = richTextBox1.SelectionStart;
-            Now_index.Text = "第" + (richTextBox1.GetLineFromCharIndex(foucusIndex) + 1) + "行";
-        }
-        //获取当前字体格式
-        private void get_font_set()
-        {
-            txt_font.Text = richTextBox1.Font.Name + " " + richTextBox1.Font.Size + "pt";
-        }
-        //路径空白判断
-        private bool PathNoNull()
-        {
-            if (filePath.Text == "")
-            {
-                //showMessage("当前没有打开任何文件！");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        //保存
+        //正常保存
         private void saveTxt()
         {
             SaveFileDialog dlg = new SaveFileDialog();
@@ -192,12 +126,12 @@ namespace text_edit
                 try
                 {
                     FileStream fs = new FileStream(saveFileName, FileMode.Create);
-                    StreamWriter sw = new StreamWriter(fs, Encoding.GetEncoding(coding_fun.Text));
-                    sw.Write(richTextBox1.Text);
+                    StreamWriter sw = new StreamWriter(fs, Encoding.GetEncoding(codingName.Text));
+                    sw.Write(mainText.Text);
                     sw.Close();
                     fs.Close();
                     filePath.Text = saveFileName;
-                    textFilePath.Text = "文件路径：";
+                    fileStatus.Text = "文件路径：";
                 }
                 catch (Exception ex)
                 {
@@ -205,34 +139,44 @@ namespace text_edit
                 }
             }
         }
-
         //快速保存
         private void Q_Save_Txt()
         {
             if (filePath.Text != "")
             {
                 FileStream fs = new FileStream(filePath.Text, FileMode.Create);
-                StreamWriter sw = new StreamWriter(fs, Encoding.GetEncoding(coding_fun.Text));
-                sw.Write(richTextBox1.Text);
+                StreamWriter sw = new StreamWriter(fs, Encoding.GetEncoding(codingName.Text));
+                sw.Write(mainText.Text);
                 sw.Close();
                 fs.Close();
-                textFilePath.Text = "文件路径：";
+                fileStatus.Text = "文件路径：";
             }
             else
             {
                 saveTxt();
             }
         }
-        //查找
-        private void SAC_From_opening()
+        //章节显示
+        private void showMessage(int line_index, string ttName)
         {
-            Form ascForm = Application.OpenForms["searchAndChange"];
+            string[] msg = { line_index.ToString(), ttName };
+            dataGridView1.Rows.Add(msg);
+        }
+        //获取当前字体格式
+        private void get_font_set()
+        {
+            FontStatus.Text = mainText.Font.Name + " " + mainText.Font.Size + "pt";
+        }
+        //查找常用函数
+        private void SAC_From_Opening()
+        {
+            Form ascForm = Application.OpenForms["SearchForm"];
 
             if ((ascForm == null) || (ascForm.IsDisposed))
             {
-                searchAndChange sac = new searchAndChange();
-                if (richTextBox1.SelectedText.Length > 0)
-                    sac.searchRulu.Text = richTextBox1.SelectedText;
+                SearchForm sac = new SearchForm();
+                if (mainText.SelectedText.Length > 0)
+                    sac.SearchText.Text = mainText.SelectedText;
                 sac.Show(this);
             }
             else
@@ -241,34 +185,13 @@ namespace text_edit
                 ascForm.WindowState = FormWindowState.Normal;
             }
         }
-
-        /// 快捷键
-        private void mainFrom_KeyDown(object sender, KeyEventArgs e)
+        //===============常用函数END=========//
+        private void exit_Click(object sender, EventArgs e)
         {
-            if (e.Modifiers == Keys.Control)
-            {
-                if (e.KeyCode == Keys.S)
-                    //ctrl+s 快捷保存
-                    Q_Save_Txt();
-                else if (e.KeyCode == Keys.F)
-                    SAC_From_opening();
-                else if (e.KeyCode == Keys.O)
-                    openText_Click(sender, e);
-            }
+            Environment.Exit(0);
         }
-        //=========
-
-
-        //=========
-        //
-        public RichTextBox RBT
-        {
-            get { return richTextBox1; }
-            set { richTextBox1 = value; }
-        }
-
-        //============== END==================//
-        private void openText_Click(object sender, EventArgs e)
+        //打开文件
+        private void openFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openTxt = new OpenFileDialog();
             openTxt.Filter = "文本文件|*.txt";
@@ -277,293 +200,230 @@ namespace text_edit
                 string fileName = openTxt.FileName;
                 //打开文件并显示
                 OpenEcode(fileName);
-
             }
             //释放窗口
             openTxt.Dispose();
         }
-
-        private void exitSystem_Click(object sender, EventArgs e)
+        //快速保存按钮
+        private void quickSave_Click(object sender, EventArgs e)
         {
-            System.Environment.Exit(0);
+            Q_Save_Txt();
         }
-
-        //保存文本
-        private void saveText_Click(object sender, EventArgs e)
+        //另存为按钮
+        private void otherSave_Click(object sender, EventArgs e)
         {
             saveTxt();
         }
-        //搜索
-        private void searchText_Click(object sender, EventArgs e)
+        //自动换行设计========
+        private void AutoEnter_Click(object sender, EventArgs e)
         {
-            SAC_From_opening();
+            AutoEnter.Checked = !AutoEnter.Checked;
+        }
+
+        private void AutoEnter_CheckedChanged(object sender, EventArgs e)
+        {
+            mainText.WordWrap = AutoEnter.Checked;
+        }
+        //自动换行设计结束========
+        //填入常用章节形式
+        private void usualTitle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TitleRule.Text = ruleList[usualTitle.SelectedIndex];
+        }
+        //检查章节
+        private void CheckedTitle_Click(object sender, EventArgs e)
+        {
+            //清空表格
+            dataGridView1.Rows.Clear();
+            //检查章节是否正确
+            int i = 0;
+            foreach (string line in mainText.Lines)
+            {
+                //检查行中是否存在章节名称
+                Match result = Regex.Match(line, TitleRule.Text);
+                if (result.Success)
+                {
+                    if (TitleIsAlone.Checked)
+                        showMessage(i, line);
+                    else
+                        showMessage(i, result.Value);
+                }
+                i++;
+            }
+        }
+        //保存段末形式到本地
+        private void saveDuanWei_Click(object sender, EventArgs e)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["DuanMo"].Value = DuanWei.Text;
+            config.AppSettings.SectionInformation.ForceSave = true;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+            MessageBox.Show("段落设置保存成功!");
+        }
+        //双击定位章节
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                //获取行数
+                int select_index = dataGridView1.CurrentRow.Index;
+                string index_str = dataGridView1.Rows[select_index].Cells["linesIndex"].Value.ToString();
+                try
+                {
+                    int line_index = int.Parse(index_str);
+                    //自动换行后，richtextbox的真实行数不等于原来的行数，因此需要先关掉自动换行，再将光标移动到章节所在行
+                    if (mainText.WordWrap)
+                        mainText.WordWrap = false;
+                    mainText.SelectionStart = mainText.GetFirstCharIndexFromLine(line_index);
+                    mainText.Focus();
+                    //如果之前是开启了自动换行，则此时应该将变换状态转换回去
+                    mainText.WordWrap = AutoEnter.Checked;
+                    mainText.ScrollToCaret();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error:" + ex.Message, "Error");
+                }
+            }
+        }
+        //窗体激活
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            mainText.Focus();
+            fresh_index();
+            get_font_set();
+            timer1.Start();
+        }
+        //刷新当前光标所在行
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            fresh_index();
+        }
+        //不作为活动窗口时关闭计时器
+        private void Form1_Leave(object sender, EventArgs e)
+        {
+            timer1.Stop();
         }
         //字体设置
-        private void geShiSet_Click(object sender, EventArgs e)
+        private void FontSetting_Click(object sender, EventArgs e)
         {
             FontDialog font_set = new FontDialog();
             font_set.ShowColor = true;
-            font_set.Font = richTextBox1.Font;
-            font_set.Color = richTextBox1.ForeColor;
+            font_set.Font = mainText.Font;
+            font_set.Color = mainText.ForeColor;
             if (font_set.ShowDialog() == DialogResult.OK)
             {
-                richTextBox1.Font = font_set.Font;
-                richTextBox1.ForeColor = font_set.Color;
+                mainText.Font = font_set.Font;
+                mainText.ForeColor = font_set.Color;
             }
             font_set.Dispose();
             get_font_set();
         }
-
-        private void richTextBox1_SelectionChanged(object sender, EventArgs e)
-        {
-            fresh_index();
-        }
-
-        //窗体运行事件
-        private void mainFrom_Activated(object sender, EventArgs e)
-        {
-            richTextBox1.Focus();
-            fresh_index();
-            get_font_set();
-        }
-
-        //private void toGB2312_Click(object sender, EventArgs e)
-        //{
-        //    toUTF8.Checked = false;
-        //    toGB18030.Checked = false;
-        //    toGB2312.Checked = true;
-        //    string Ecoding_func = "gb2312";
-        //    if (PathNoNull())
-        //        OpenEcode(filePath.Text, Ecoding_func);
-        //    else
-        //        coding_fun.Text = Ecoding_func;
-        //}
-
-        private void saveBt_Click(object sender, EventArgs e)
-        {
-            Q_Save_Txt();
-        }
         //关于
-        private void aboutBt_Click(object sender, EventArgs e)
+        private void about_Click(object sender, EventArgs e)
         {
+            //关于
             about ab = new about();
             ab.Show();
         }
         //去除空行
-        private void clearNullLine_Click(object sender, EventArgs e)
+        private void ClearNullLine_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
-            foreach (string line in richTextBox1.Lines)
+            foreach (string line in mainText.Lines)
             {
                 if (line.Length > 0 && !Regex.Match(line, @"^\s*$").Success)
-                    sb.Append(line + "\n");
+                    sb.Append(line + Environment.NewLine);
             }
-            richTextBox1.Text = sb.ToString();
-            sb.Clear();
-
-        }
-
-        private void autoEnter_CheckedChanged(object sender, EventArgs e)
-        {
-            if (autoEnter.Checked)
-                richTextBox1.WordWrap = true;
-            else
-                richTextBox1.WordWrap = false;
-        }
-
-        private void autoEnter_Click(object sender, EventArgs e)
-        {
-            autoEnter.Checked = !autoEnter.Checked;
-        }
-
-        //去除文本中的全部空白
-        private void clearNull_Click(object sender, EventArgs e)
-        {
-            StringBuilder sb = new StringBuilder(Regex.Replace(richTextBox1.Text, @"[\t \f]", ""));
-            richTextBox1.Text = sb.ToString();
+            mainText.Text = sb.ToString();
             sb.Clear();
         }
-
-        private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
+        //去除开头结尾的空格
+        private void TextTrim_Click(object sender, EventArgs e)
         {
-            //去除粘贴时的文本格式
-            if (e.Control && e.KeyCode == Keys.V)
-            {
-                e.Handled = true;//屏蔽Ctrl+ V组合按键
-
-                DataFormats.Format myFormat = DataFormats.GetFormat(DataFormats.Text);
-                richTextBox1.Paste(myFormat);
-            }
-        }
-
-        private void clearTN_Click(object sender, EventArgs e)
-        {
-            //去除开头结尾的空格
             StringBuilder sb = new StringBuilder();
-            foreach (string i in richTextBox1.Lines)
+            foreach (string i in mainText.Lines)
             {
                 //sb.Append(i.Trim() + "\n");
                 string temp1 = Regex.Replace(i, @"^\s+", "");
                 temp1 = Regex.Replace(temp1, @"\s+$", "");
-                sb.Append(temp1 + "\n");
+                sb.Append(temp1 + Environment.NewLine);
             }
-            richTextBox1.Text = sb.ToString();
+            mainText.Text = sb.ToString();
             sb.Clear();
         }
-
-        private void clearLineN_Click(object sender, EventArgs e)
-        {
-            //去除当前行空格
-            int focus_index = richTextBox1.SelectionStart;
-            int line_index = richTextBox1.GetLineFromCharIndex(focus_index);
-            int start_index = richTextBox1.GetFirstCharIndexFromLine(line_index);
-            string line = richTextBox1.Lines[line_index];
-            //修改当前行内容
-            line = line.Replace(" ", "");
-            richTextBox1.SelectionStart = start_index;
-            richTextBox1.SelectionLength = richTextBox1.Lines[line_index].Length;
-            richTextBox1.SelectedText = line;
-        }
-
-        private void autoParagraph_Click(object sender, EventArgs e)
+        //自动整理段落
+        private void ParaFormat_Click(object sender, EventArgs e)
         {
             //自动整理段落
             StringBuilder sb = new StringBuilder();
             string duanluo = "";
-            if (unitFromat_txt.Text.Length <= 0)
+            if (TitleRule.Text.Length <= 0)
                 if (MessageBox.Show("确认已填入章节索引模式？", "提示", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
                     return;
-            foreach (string line in richTextBox1.Lines)
+            foreach (string line in mainText.Lines)
             {
                 //空行不保留
                 if (Regex.Match(line, @"^\s*$").Success)
                     continue;
                 duanluo += line;
                 //检查是否为章节列
-                Match result = Regex.Match(line, unitFromat_txt.Text);
-                if (result.Success && unitFromat_txt.Text != "")
+                Match result = Regex.Match(line, TitleRule.Text);
+                if (result.Success && TitleRule.Text != "")
                 {
                     string qiege = duanluo.Substring(0, duanluo.Length - line.Length);
                     if (qiege.Length > 0)
-                        sb.Append(qiege + "\n");
+                        sb.Append(qiege + Environment.NewLine);
                     duanluo = "";
-                    if (aloneLine.Checked)
-                        sb.Append("\n" + line + "\n\n");
+                    if (TitleIsAlone.Checked)
+                        sb.Append(Environment.NewLine + line + Environment.NewLine + Environment.NewLine);
                     else
                     {
-                        sb.Append("\n" + result.Value + "\n\n" + line.Substring(result.Value.Length));
+                        sb.Append(Environment.NewLine + result.Value + Environment.NewLine + Environment.NewLine + line.Substring(result.Value.Length));
                     }
                 }
                 //不是就检查末尾的符号，包括
-                else if (Regex.Match(line, DuanMo.Text).Success)
+                else if (Regex.Match(line, DuanWei.Text).Success)
                 {
-                    sb.Append(duanluo + "\n");
+                    sb.Append(duanluo + Environment.NewLine);
                     duanluo = "";
                 }
             }
             if (duanluo.Length > 0)
                 sb.Append(duanluo);
-            richTextBox1.Text = sb.ToString();
+            mainText.Text = sb.ToString();
             sb.Clear();
         }
-        //==============
-        //===============
-        //检查章节名称
-        private void checkTitle_Click(object sender, EventArgs e)
+        //去除全部空白
+        private void ClearAllSpace_Click(object sender, EventArgs e)
         {
-            //清空表格
-            dataGridView1.Rows.Clear();
-            //检查章节是否正确
-            int i = 0;
-            foreach (string line in richTextBox1.Lines)
-            {
-                //检查行中是否存在章节名称
-                string result = re.Match(line, unitFromat_txt.Text);
-                if (result != "")
-                {
-                    if (aloneLine.Checked)
-                        showMessage(i, line);
-                    else
-                        showMessage(i, result);
-                }
-                i++;
-            }
-        }
-
-        private void insertTileRule_Click(object sender, EventArgs e)
-        {
-            //填入常见段落形式
-            unitFromat_txt.Text = usualRule[usualTitle.SelectedIndex];
-        }
-        //一键整理标题
-        private void makeTitle_Click(object sender, EventArgs e)
-        {
-            StringBuilder sb = new StringBuilder();
-            string line_temp;
-            foreach (string line in richTextBox1.Lines)
-            {
-                if (!Regex.Match(line, @"^\s*$").Success)
-                {
-                    line_temp = line;
-                    //检查行中是否存在章节名称
-                    Match result = Regex.Match(line, unitFromat_txt.Text);
-                    if (result.Success)
-                    {
-                        if (aloneLine.Checked)
-                            //文章标题单独一行
-                            line_temp = "\n" + line + "\n";
-                        else
-                            //格式错乱，只分割出章节
-                            line_temp = "\n" + result.Value + "\n\n" + line.Substring(result.Value.Length);
-                    }
-                    sb.Append(line_temp + "\n");
-                }
-            }
-            richTextBox1.Text = sb.ToString();
+            StringBuilder sb = new StringBuilder(Regex.Replace(mainText.Text, @"[\t \f]", ""));
+            mainText.Text = sb.ToString();
             sb.Clear();
         }
-        //保存段落结尾形式到本地
-        private void saveJuMo_Click(object sender, EventArgs e)
+
+        private void mainText_TextChanged(object sender, EventArgs e)
         {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["DuanMo"].Value = DuanMo.Text;
-            config.AppSettings.SectionInformation.ForceSave = true;
-            config.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appSettings");
-            MessageBox.Show("段落设置保存成功!");
+            fileStatus.Text = "*文件路径：";
         }
 
-        //文本保存提示
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private void search_Click(object sender, EventArgs e)
         {
-            textFilePath.Text = "*文件路径：";
+            SAC_From_Opening();
         }
+        //右键复制
+        private void CopyText_Click(object sender, EventArgs e)
+        {
+            mainText.Copy();
+        }
+        //右键粘贴
+        private void PasteText_Click(object sender, EventArgs e)
+        {
+            DataFormats.Format myFormat = DataFormats.GetFormat(DataFormats.Text);
+            mainText.Paste(myFormat);
+        }
+        //==
 
-        //章节双击索引
-        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if(e.RowIndex >= 0)
-            {
-                //获取行数
-                int select_index = dataGridView1.CurrentRow.Index;
-                string index_str = dataGridView1.Rows[select_index].Cells["hang"].Value.ToString();
-                try
-                {
-                    int line_index = int.Parse(index_str);
-                    //自动换行后，richtextbox的真实行数不等于原来的行数，因此需要先关掉自动换行，再将光标移动到章节所在行
-                    if(richTextBox1.WordWrap)
-                        richTextBox1.WordWrap = false;
-                    richTextBox1.SelectionStart = richTextBox1.GetFirstCharIndexFromLine(line_index);
-                    richTextBox1.Focus();
-                    //如果之前是开启了自动换行，则此时应该将变换状态转换回去
-                    richTextBox1.WordWrap = autoEnter.Checked;
-                    richTextBox1.ScrollToCaret();
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show("错误信息:" + ex.Message, "Error");
-                }
-            }
-        }
     }
 }

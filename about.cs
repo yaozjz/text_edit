@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace text_edit
+namespace textEdit
 {
     public partial class about : Form
     {
