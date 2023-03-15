@@ -20,29 +20,22 @@ namespace textEdit
             mainText.DragDrop += new DragEventHandler(mainText_DragDrop);
             //初始化常见章节套路
             //从文件中读取
-
             try
             {
-                FileStream fs = new FileStream("./rule.txt", FileMode.Open, FileAccess.Read);
-                StreamReader sr = new StreamReader(fs);
-                string line = sr.ReadLine();
-                while (line != null)
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                foreach (string keys in config.AppSettings.Settings.AllKeys)
                 {
-                    string[] strArry = line.Split('=');
-                    ruleList.Add(strArry[1]);
-                    usualTitle.Items.Add(strArry[0]);
-                    line = sr.ReadLine();
+                    ruleList.Add(config.AppSettings.Settings[keys].Value.ToString());
+                    usualTitle.Items.Add(keys);
                 }
-                sr.Close();
-                fs.Close();
                 usualTitle.SelectedIndex = 0;
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("文章规则文件无法索引，请放置rule.txt文件到软件根目录下。", "提示");
+                MessageBox.Show("配置文件打开出错。" + ex.Message);
             }
             //加载段落格式
-            DuanWei.Text = ConfigurationManager.AppSettings["DuanMo"];
+            DuanWei.Text = Properties.Settings.Default.DuanWei;
         }
         //=============参数===========//
 
@@ -254,12 +247,15 @@ namespace textEdit
         //保存段末形式到本地
         private void saveDuanWei_Click(object sender, EventArgs e)
         {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["DuanMo"].Value = DuanWei.Text;
-            config.AppSettings.SectionInformation.ForceSave = true;
-            config.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appSettings");
-            MessageBox.Show("段落设置保存成功!");
+            try
+            {
+                Properties.Settings.Default.DuanWei = DuanWei.Text;
+                MessageBox.Show("段落设置保存成功!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         //双击定位章节
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -422,6 +418,26 @@ namespace textEdit
         {
             DataFormats.Format myFormat = DataFormats.GetFormat(DataFormats.Text);
             mainText.Paste(myFormat);
+        }
+        //设置打开方式
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            string command = Environment.CommandLine;//获取进程命令行参数
+            string[] para = command.Split('\"');
+            if (para.Length > 3)
+            {
+                string fileName = para[3];//获取打开的文件的路径
+                //下面就可以自己编写代码使用这个pathC参数了
+                //FileStream fs = new FileStream(pathC, FileMode.Open, FileAccess.Read);
+                OpenEcode(fileName);
+            }
+        }
+
+        private void TitelSetting_Click(object sender, EventArgs e)
+        {
+            TitelRuleSetting trs = new TitelRuleSetting();
+            trs.ShowDialog();
+            trs.Dispose();
         }
         //==
 

@@ -52,6 +52,7 @@ namespace textEdit
             this.格式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FontSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.AutoEnter = new System.Windows.Forms.ToolStripMenuItem();
+            this.TitelSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.about = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -67,7 +68,6 @@ namespace textEdit
             this.TitleIsAlone = new System.Windows.Forms.CheckBox();
             this.TitleRule = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.mainText = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CopyText = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,6 +75,7 @@ namespace textEdit
             this.去除空行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.去除开头与结尾空格ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.自动整理段落ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -88,13 +89,14 @@ namespace textEdit
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileStatus,
             this.filePath,
             this.nowLine,
             this.codingName,
             this.FontStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 570);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 624);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1208, 22);
@@ -135,6 +137,7 @@ namespace textEdit
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件ToolStripMenuItem,
             this.操作ToolStripMenuItem,
@@ -251,7 +254,8 @@ namespace textEdit
             // 
             this.格式ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FontSetting,
-            this.AutoEnter});
+            this.AutoEnter,
+            this.TitelSetting});
             this.格式ToolStripMenuItem.Name = "格式ToolStripMenuItem";
             this.格式ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.格式ToolStripMenuItem.Text = "格式";
@@ -270,6 +274,13 @@ namespace textEdit
             this.AutoEnter.Text = "自动换行";
             this.AutoEnter.CheckedChanged += new System.EventHandler(this.AutoEnter_CheckedChanged);
             this.AutoEnter.Click += new System.EventHandler(this.AutoEnter_Click);
+            // 
+            // TitelSetting
+            // 
+            this.TitelSetting.Name = "TitelSetting";
+            this.TitelSetting.Size = new System.Drawing.Size(180, 22);
+            this.TitelSetting.Text = "目录检索规则";
+            this.TitelSetting.Click += new System.EventHandler(this.TitelSetting_Click);
             // 
             // about
             // 
@@ -294,7 +305,7 @@ namespace textEdit
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.mainText);
-            this.splitContainer1.Size = new System.Drawing.Size(1208, 543);
+            this.splitContainer1.Size = new System.Drawing.Size(1208, 597);
             this.splitContainer1.SplitterDistance = 218;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -316,9 +327,10 @@ namespace textEdit
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(219, 355);
+            this.dataGridView1.Size = new System.Drawing.Size(219, 409);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
@@ -335,6 +347,7 @@ namespace textEdit
             // 
             this.titleNames.FillWeight = 149.2386F;
             this.titleNames.HeaderText = "章节名称";
+            this.titleNames.MinimumWidth = 6;
             this.titleNames.Name = "titleNames";
             this.titleNames.ReadOnly = true;
             // 
@@ -459,11 +472,6 @@ namespace textEdit
             this.label1.TabIndex = 0;
             this.label1.Text = "目录整理：";
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 500;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // mainText
             // 
             this.mainText.AcceptsTab = true;
@@ -472,7 +480,7 @@ namespace textEdit
             this.mainText.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.mainText.Location = new System.Drawing.Point(0, 0);
             this.mainText.Name = "mainText";
-            this.mainText.Size = new System.Drawing.Size(986, 543);
+            this.mainText.Size = new System.Drawing.Size(986, 597);
             this.mainText.TabIndex = 0;
             this.mainText.Text = "";
             this.mainText.WordWrap = false;
@@ -480,6 +488,7 @@ namespace textEdit
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CopyText,
             this.PasteText,
@@ -526,11 +535,16 @@ namespace textEdit
             this.自动整理段落ToolStripMenuItem.Text = "自动整理段落";
             this.自动整理段落ToolStripMenuItem.Click += new System.EventHandler(this.ParaFormat_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1208, 592);
+            this.ClientSize = new System.Drawing.Size(1208, 646);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -542,6 +556,7 @@ namespace textEdit
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "小说文本编辑器";
             this.Activated += new System.EventHandler(this.Form1_Activated);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Leave += new System.EventHandler(this.Form1_Leave);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -606,6 +621,7 @@ namespace textEdit
         private System.Windows.Forms.ToolStripMenuItem 去除空行ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 去除开头与结尾空格ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 自动整理段落ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem TitelSetting;
     }
 }
 

@@ -9,3 +9,16 @@ G:\git仓库\software\textEdit\obj\x64\Debug\textEdit.csproj.GenerateResource.ca
 G:\git仓库\software\textEdit\obj\x64\Debug\textEdit.csproj.CoreCompileInputs.cache
 G:\git仓库\software\textEdit\obj\x64\Debug\textEdit.exe
 G:\git仓库\software\textEdit\obj\x64\Debug\textEdit.pdb
+D:\project\programe\Csharp\text_edit\bin\x64\Debug\textEdit.exe.config
+D:\project\programe\Csharp\text_edit\bin\x64\Debug\textEdit.exe
+D:\project\programe\Csharp\text_edit\bin\x64\Debug\textEdit.pdb
+D:\project\programe\Csharp\text_edit\obj\x64\Debug\textEdit.about.resources
+D:\project\programe\Csharp\text_edit\obj\x64\Debug\textEdit.Form1.resources
+D:\project\programe\Csharp\text_edit\obj\x64\Debug\textEdit.Properties.Resources.resources
+D:\project\programe\Csharp\text_edit\obj\x64\Debug\textEdit.SearchForm.resources
+D:\project\programe\Csharp\text_edit\obj\x64\Debug\textEdit.csproj.GenerateResource.cache
+D:\project\programe\Csharp\text_edit\obj\x64\Debug\textEdit.csproj.CoreCompileInputs.cache
+D:\project\programe\Csharp\text_edit\obj\x64\Debug\textEdit.exe
+D:\project\programe\Csharp\text_edit\obj\x64\Debug\textEdit.pdb
+D:\project\programe\Csharp\text_edit\obj\x64\Debug\textEdit.csproj.AssemblyReference.cache
+D:\project\programe\Csharp\text_edit\obj\x64\Debug\textEdit.TitelRuleSetting.resources

@@ -38,8 +38,8 @@ namespace textEdit
             this.OnRe = new System.Windows.Forms.CheckBox();
             this.OnChange = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.toUP = new System.Windows.Forms.RadioButton();
             this.toDown = new System.Windows.Forms.RadioButton();
+            this.toUP = new System.Windows.Forms.RadioButton();
             this.AllChange = new System.Windows.Forms.Button();
             this.ExitSearch = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -136,16 +136,6 @@ namespace textEdit
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "方向";
             // 
-            // toUP
-            // 
-            this.toUP.AutoSize = true;
-            this.toUP.Location = new System.Drawing.Point(10, 27);
-            this.toUP.Name = "toUP";
-            this.toUP.Size = new System.Drawing.Size(55, 24);
-            this.toUP.TabIndex = 0;
-            this.toUP.Text = "向上";
-            this.toUP.UseVisualStyleBackColor = true;
-            // 
             // toDown
             // 
             this.toDown.AutoSize = true;
@@ -157,6 +147,16 @@ namespace textEdit
             this.toDown.TabStop = true;
             this.toDown.Text = "向下";
             this.toDown.UseVisualStyleBackColor = true;
+            // 
+            // toUP
+            // 
+            this.toUP.AutoSize = true;
+            this.toUP.Location = new System.Drawing.Point(10, 27);
+            this.toUP.Name = "toUP";
+            this.toUP.Size = new System.Drawing.Size(55, 24);
+            this.toUP.TabIndex = 0;
+            this.toUP.Text = "向上";
+            this.toUP.UseVisualStyleBackColor = true;
             // 
             // AllChange
             // 
@@ -200,6 +200,7 @@ namespace textEdit
             this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "SearchForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
