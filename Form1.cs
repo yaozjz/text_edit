@@ -20,20 +20,7 @@ namespace textEdit
             mainText.DragDrop += new DragEventHandler(mainText_DragDrop);
             //初始化常见章节套路
             //从文件中读取
-            try
-            {
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                foreach (string keys in config.AppSettings.Settings.AllKeys)
-                {
-                    ruleList.Add(config.AppSettings.Settings[keys].Value.ToString());
-                    usualTitle.Items.Add(keys);
-                }
-                usualTitle.SelectedIndex = 0;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("配置文件打开出错。" + ex.Message);
-            }
+            FreshTitleRule();
             //加载段落格式
             DuanWei.Text = Properties.Settings.Default.DuanWei;
         }
@@ -47,6 +34,26 @@ namespace textEdit
             set { mainText = value; }
         }
         //==============参数END==============//
+        //规则索引刷新
+        private void FreshTitleRule()
+        {
+            ruleList.Clear();
+            usualTitle.Items.Clear();
+            try
+            {
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                foreach (string keys in config.AppSettings.Settings.AllKeys)
+                {
+                    ruleList.Add(config.AppSettings.Settings[keys].Value.ToString());
+                    usualTitle.Items.Add(keys);
+                }
+                usualTitle.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("\n这是配置文件引发的错误，建议检查软件的.config文件，确认appSetting的节点为非空。" + ex.Message);
+            }
+        }
         //拖拽打开
         private void mainText_DragEnter(object sender, DragEventArgs e)
         {
@@ -432,11 +439,16 @@ namespace textEdit
                 OpenEcode(fileName);
             }
         }
-
+        //设置
         private void TitelSetting_Click(object sender, EventArgs e)
         {
             TitelRuleSetting trs = new TitelRuleSetting();
-            trs.ShowDialog();
+            if (trs.ShowDialog() == DialogResult.OK)
+            {
+                FreshTitleRule();
+                //刷新文本
+                TitleRule.Text = ruleList[usualTitle.SelectedIndex];
+            }
             trs.Dispose();
         }
         //==
