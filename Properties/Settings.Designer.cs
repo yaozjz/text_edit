@@ -34,5 +34,41 @@ namespace textEdit.Properties {
                 this["DuanWei"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1224")]
+        public int width {
+            get {
+                return ((int)(this["width"]));
+            }
+            set {
+                this["width"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("685")]
+        public int height {
+            get {
+                return ((int)(this["height"]));
+            }
+            set {
+                this["height"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool toolsEnabel {
+            get {
+                return ((bool)(this["toolsEnabel"]));
+            }
+            set {
+                this["toolsEnabel"] = value;
+            }
+        }
     }
 }

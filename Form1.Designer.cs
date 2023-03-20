@@ -76,6 +76,8 @@ namespace textEdit
             this.去除开头与结尾空格ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.自动整理段落ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EnableSplitPanel1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -142,6 +144,7 @@ namespace textEdit
             this.文件ToolStripMenuItem,
             this.操作ToolStripMenuItem,
             this.格式ToolStripMenuItem,
+            this.窗口ToolStripMenuItem,
             this.about});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -301,6 +304,7 @@ namespace textEdit
             // 
             this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
+            this.splitContainer1.Panel1MinSize = 210;
             // 
             // splitContainer1.Panel2
             // 
@@ -367,6 +371,7 @@ namespace textEdit
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1, 3);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.MinimumSize = new System.Drawing.Size(218, 182);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(218, 182);
             this.panel1.TabIndex = 0;
@@ -540,6 +545,21 @@ namespace textEdit
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // 窗口ToolStripMenuItem
+            // 
+            this.窗口ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EnableSplitPanel1});
+            this.窗口ToolStripMenuItem.Name = "窗口ToolStripMenuItem";
+            this.窗口ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.窗口ToolStripMenuItem.Text = "窗口";
+            // 
+            // EnableSplitPanel1
+            // 
+            this.EnableSplitPanel1.Name = "EnableSplitPanel1";
+            this.EnableSplitPanel1.Size = new System.Drawing.Size(180, 22);
+            this.EnableSplitPanel1.Text = "隐藏侧栏";
+            this.EnableSplitPanel1.Click += new System.EventHandler(this.EnableSplitPanel1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -556,6 +576,7 @@ namespace textEdit
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "小说文本编辑器";
             this.Activated += new System.EventHandler(this.Form1_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Leave += new System.EventHandler(this.Form1_Leave);
             this.statusStrip1.ResumeLayout(false);
@@ -622,6 +643,8 @@ namespace textEdit
         private System.Windows.Forms.ToolStripMenuItem 去除开头与结尾空格ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 自动整理段落ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem TitelSetting;
+        private System.Windows.Forms.ToolStripMenuItem 窗口ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EnableSplitPanel1;
     }
 }
 

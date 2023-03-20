@@ -5,5 +5,14 @@
     <Setting Name="DuanWei" Type="System.String" Scope="User">
       <Value Profile="(Default)">(.*?)[\.\'\?。？”’！」：…＊）】]$</Value>
     </Setting>
+    <Setting Name="width" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1224</Value>
+    </Setting>
+    <Setting Name="height" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">685</Value>
+    </Setting>
+    <Setting Name="toolsEnabel" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -13,6 +13,12 @@ namespace textEdit
         public Form1()
         {
             InitializeComponent();
+            //读取窗口大小
+            Width = Properties.Settings.Default.width;
+            Height = Properties.Settings.Default.height;
+            //读取工具栏状态
+            EnableSplitPanel1.Checked = Properties.Settings.Default.toolsEnabel;
+            splitContainer1.Panel1Collapsed = EnableSplitPanel1.Checked;
             mainText.LanguageOption = RichTextBoxLanguageOptions.UIFonts; //防止中英文字体不一致
             //文本拖拽导入功能
             mainText.AllowDrop = true;
@@ -23,6 +29,7 @@ namespace textEdit
             FreshTitleRule();
             //加载段落格式
             DuanWei.Text = Properties.Settings.Default.DuanWei;
+
         }
         //=============参数===========//
 
@@ -450,6 +457,20 @@ namespace textEdit
                 TitleRule.Text = ruleList[usualTitle.SelectedIndex];
             }
             trs.Dispose();
+        }
+        //窗口关闭时保存一些状态
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.width = Size.Width;
+            Properties.Settings.Default.height = Size.Height;
+            Properties.Settings.Default.toolsEnabel = EnableSplitPanel1.Checked;
+            Properties.Settings.Default.Save();
+        }
+        //工具栏隐藏设置
+        private void EnableSplitPanel1_Click(object sender, EventArgs e)
+        {
+            EnableSplitPanel1.Checked = !EnableSplitPanel1.Checked;
+            splitContainer1.Panel1Collapsed = EnableSplitPanel1.Checked;
         }
         //==
 
